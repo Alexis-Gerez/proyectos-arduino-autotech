@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprende a controlar un servomotor con un potenciómetro usando Arduino. Proyecto educativo ideal para estudiantes y entusiastas de la electrónica.">
+    <meta name="keywords" content="Arduino, Servomotor, Potenciómetro, Proyecto de Arduino, Electrónica, Control de Servomotor, Proyectos Arduino Iniciales">
+    <title>Proyecto Inicial: Control de Servomotor con Potenciómetro y Arduino - Proyecto Educativo</title>
+    <style>
+        h2 {
+            margin-top: 30px;
+        }
+        p, ul, ol, pre {
+            margin-bottom: 20px;
+        }
+        .code-box {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            background-color: #f0f8ff;
+            position: relative;
+            margin: 20px 0;
+            width: 95%;
+            overflow-x: auto;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .hidden-answer {
+            display: none;
+            margin-top: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            width: 95%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .show-answer {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .answer-spacing {
+            margin-top: 20px;
+        }
+        .copy-solution-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function copyCode() {
+            const codeContent = document.getElementById('codeContent').innerText;
+            navigator.clipboard.writeText(codeContent);
+            alert("¡Código copiado al portapapeles!");
+        }
+
+        function toggleAnswer() {
+            const answer = document.getElementById('answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copySolutionCode() {
+            const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+            navigator.clipboard.writeText(solutionCodeContent);
+            alert("¡Código de la solución copiado al portapapeles!");
+        }
+    </script>
+</head>
+<body>
+    <h1>¡Controla un Servomotor con un Potenciómetro y Arduino! Un Proyecto Divertido y Educativo</h1>
+
+    <p>¡Hola, entusiasta de Arduino! Hoy te traigo un proyecto emocionante que combina mecánica y electrónica: <strong>Control de un Servomotor mediante un Potenciómetro</strong>. Usaremos un Arduino Uno para ajustar la posición de un servomotor según la rotación de un potenciómetro. Es un proyecto perfecto para aprender sobre el control de movimiento, y te prometo que lo disfrutarás tanto como yo disfruté creándolo. 😄</p>
+
+    <div class="separator" style="clear: both;">
+        <a href="https://www.tinkercad.com/things/4lt8KIwv8Uw-inicial-proyecto2-control-de-un-servo-mediante-potenciometro" style="display: block; padding: 1em 0; text-align: center;">
+            <img alt="Control de Servomotor con Potenciómetro y Arduino" title="Control de Servomotor con Potenciómetro y Arduino" border="0" data-original-height="381" data-original-width="678" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisa_u7wkVbGaSDRN_Fpyx0a3nUzGbXHOFCS95kJtb6Va2P3K1k2OnSJxSJcbqifZNWRvRnxuW_AcFXEB3OACrTPKskcRf_QUuGpp6Djns00FRghgAexI4iUtG5-Wc60iE7JduEyHdA4690QzyXpYrUbbzAV0R-l3JUGAYbpL1fsn1gP7IjVUqdDe58jfNO/s1600/p2.png"/>
+        </a>
+        <p style="text-align: center; font-weight: bold;">Control de Servomotor con Potenciómetro y Arduino: Aprende a ajustar la posición de un servomotor usando un potenciómetro con Arduino.</p>
+    </div>
+
+    <h2>Enlace al Proyecto en Tinkercad - Control de Servomotor con Potenciómetro</h2>
+    <p>Si quieres ver este proyecto en acción, visita el siguiente enlace en Tinkercad: <a href="https://www.tinkercad.com/things/4lt8KIwv8Uw-inicial-proyecto2-control-de-un-servo-mediante-potenciometro" target="_blank">Control de Servomotor con Potenciómetro - Proyecto en Tinkercad</a>. Recuerda ajustar los componentes según la configuración indicada para que todo funcione correctamente.</p>
+
+    <h2>Componentes Necesarios</h2>
+    <p>Para construir este proyecto, necesitarás los siguientes componentes:</p>
+    <ul>
+        <li>1 x Arduino Uno R3</li>
+        <li>1 x Potenciómetro de 250 kΩ</li>
+        <li>1 x Microservomotor Posicional</li>
+    </ul>
+
+    <h2>Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+    <ul>
+        <li><a href="https://amzn.to/4dQTpkX" target="_blank">Kit de componentes Arduino Uno R3 - Incluye Arduino y más</a></li>
+        <li><a href="https://amzn.to/3yGZIsk" target="_blank">Kit de módulos de sensores y servomotores - Compatible con Arduino</a></li>
+    </ul>
+
+    <h2>Configuración del Circuito</h2>
+    
+    <h3>Diagrama de Conexión</h3>
+   <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJRC1VXGmjzLtTbDJ1fdlS-8Php1YT3O78wPS-_rqeWBkKM8CXiR2TjnJka3RP3rBgh2j0SMrISxQldivyFUV5eM0hMg6DtuwvZJ21-F5RF4_MxQnjdXxCCA4ICnpBdAJwUdpM1T-hkQ0nMAM7su4EYNIefwyiOL6K6Mq8Keu_dL0YRTu5YuxWY5TW6Jic/s1600/p3-ArduinoUno-proyecto-programacion-controldeservomediantepotenciometro.jpg" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="1704" data-original-width="1755" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJRC1VXGmjzLtTbDJ1fdlS-8Php1YT3O78wPS-_rqeWBkKM8CXiR2TjnJka3RP3rBgh2j0SMrISxQldivyFUV5eM0hMg6DtuwvZJ21-F5RF4_MxQnjdXxCCA4ICnpBdAJwUdpM1T-hkQ0nMAM7su4EYNIefwyiOL6K6Mq8Keu_dL0YRTu5YuxWY5TW6Jic/s1600/p3-ArduinoUno-proyecto-programacion-controldeservomediantepotenciometro.jpg"/></a></div>
+
+    <h3>Conexiones:</h3>
+    <ul>
+        <li><strong>Potenciómetro:</strong>
+            <ul>
+                <li>Conecta el pin central del potenciómetro al pin analógico A0 de Arduino.</li>
+                <li>Conecta un extremo del potenciómetro a 5V y el otro a GND.</li>
+            </ul>
+        </li>
+        <li><strong>Servomotor:</strong>
+            <ul>
+                <li>Conecta el cable de señal del servomotor al pin digital 3 de Arduino.</li>
+                <li>Conecta el cable de alimentación del servomotor a 5V.</li>
+                <li>Conecta el cable de tierra del servomotor a GND.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Código para Controlar el Servomotor con Potenciómetro</h2>
+    <p>¡Hora de ensuciarnos las manos con un poco de código! Copia y pega este código en tu Arduino IDE, y prepárate para ver la magia en acción:</p>
+
+    <div class="code-box">
+        <button class="copy-button" onclick="copyCode()">Copiar Código</button>
+        <pre id="codeContent">
+<code>
+// Incluimos la librería Servo para controlar el servomotor
+#include <Servo.h>
+
+// Creamos un objeto Servo para controlar el servomotor
+Servo servo_3;
+int potPin = A0; // Pin donde está conectado el potenciómetro
+int servoPin = 3; // Pin donde está conectado el servomotor
+
+void setup() {
+  pinMode(potPin, INPUT); // Configuramos el pin del potenciómetro como entrada
+  Serial.begin(9600); // Iniciamos la comunicación serie a 9600 baudios
+  servo_3.attach(servoPin); // Adjuntamos el servomotor al pin 3
+}
+
+void loop() {
+  int potValue = analogRead(potPin); // Leemos el valor del potenciómetro
+  Serial.println(potValue); // Mostramos el valor leído en el Monitor Serie
+
+  int angle = map(potValue, 0, 1023, 0, 180); // Convertimos el valor leído a un ángulo
+  servo_3.write(angle); // Movemos el servomotor al ángulo calculado
+  delay(10); // Retardo para mejorar el rendimiento de la simulación
+}
+</code>
+        </pre>
+    </div>
+
+    <h2>Explicación del Código</h2>
+    <p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+    <ol>
+        <li><strong>#include &lt;Servo.h&gt;:</strong> Esta línea incluye la librería <code>Servo.h</code>, que proporciona las funciones necesarias para controlar un servomotor con Arduino. Esta librería es esencial para manipular el servomotor mediante comandos sencillos.</li>
+        
+        <li><strong>Servo servo_3;:</strong> Aquí creamos un objeto llamado <code>servo_3</code> de tipo <code>Servo</code>. Este objeto representará el servomotor que controlaremos en el código, permitiéndonos manejarlo como una entidad con propiedades y métodos.</li>
+        
+        <li><strong>int potPin = A0;:</strong> Definimos una variable entera <code>potPin</code> que almacena el número del pin de Arduino al que está conectado el potenciómetro. En este caso, usamos el pin A0, que es un pin analógico capaz de leer señales variables.</li>
+        
+        <li><strong>int servoPin = 3;:</strong> Esta línea establece el pin digital al que está conectado el servomotor. Aquí, usamos el pin 3.</li>
+        
+        <li><strong>void setup() { ... }:</strong> La función <code>setup()</code> se ejecuta una sola vez al iniciar el Arduino. Aquí se configuran las entradas y salidas, y se establece la comunicación serial:
+            <ul>
+                <li><code>pinMode(potPin, INPUT);</code> configura el pin <code>potPin</code> como una entrada, para que pueda leer valores del potenciómetro.</li>
+                <li><code>Serial.begin(9600);</code> inicia la comunicación serial a 9600 baudios, lo que permite enviar datos al monitor serie para monitoreo en tiempo real.</li>
+                <li><code>servo_3.attach(servoPin);</code> vincula el servomotor al pin digital 3 de Arduino.</li>
+            </ul>
+        </li>
+        
+        <li><strong>void loop() { ... }:</strong> La función <code>loop()</code> se ejecuta repetidamente en un bucle infinito. Aquí es donde se realizan las lecturas del sensor y los movimientos del servomotor:
+            <ul>
+                <li><code>int potValue = analogRead(potPin);</code> lee el valor del potenciómetro y lo guarda en la variable <code>potValue</code>. Este valor puede variar de 0 (posición mínima) a 1023 (posición máxima).</li>
+                <li><code>Serial.println(potValue);</code> imprime el valor de <code>potValue</code> en el Monitor Serie, permitiendo visualizar los cambios en tiempo real.</li>
+                <li><code>int angle = map(potValue, 0, 1023, 0, 180);</code> convierte el valor leído del potenciómetro (rango de 0 a 1023) en un ángulo para el servomotor (rango de 0 a 180 grados).</li>
+                <li><code>servo_3.write(angle);</code> mueve el servomotor al ángulo calculado, controlando su posición de manera precisa.</li>
+                <li><code>delay(10);</code> introduce una pausa de 10 milisegundos antes de la siguiente iteración del bucle, mejorando el rendimiento de la simulación y evitando lecturas inestables del sensor.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>Problemas Comunes y Soluciones</h2>
+    <ul>
+        <li><strong>El servomotor no se mueve:</strong> Verifica que las conexiones sean correctas y que el servomotor esté recibiendo suficiente alimentación. Revisa el pin de control y asegúrate de que esté conectado al pin 3 de Arduino.</li>
+        <li><strong>El potenciómetro no responde:</strong> Asegúrate de que el potenciómetro esté conectado correctamente y de que el circuito esté funcionando. Revisa las conexiones a 5V, GND, y el pin A0 de Arduino.</li>
+        <li><strong>El valor del potenciómetro en el monitor serie no cambia:</strong> Puede ser que haya un problema con las conexiones o que el potenciómetro esté defectuoso. Revisa todas las conexiones y prueba con otro potenciómetro si es necesario.</li>
+    </ul>
+
+    <h2>Desafío para el Usuario</h2>
+    <p>¿Cómo podrías modificar el proyecto para controlar más de un servomotor utilizando un segundo potenciómetro? ¡Déjanos tu idea en los comentarios!</p>
+
+    <button class="show-answer" onclick="toggleAnswer()">Mostrar Solución</button>
+
+    <div class="answer-spacing"></div>
+
+    <div class="hidden-answer" id="answer">
+        <p>Puedes declarar otro objeto Servo y un segundo potenciómetro. Luego, duplicarías la lógica en el <code>loop()</code> para controlar cada servo de manera independiente:</p>
+        <pre id="solutionCodeContent">
+<code>
+// Añade estas líneas al código existente
+
+Servo servo_4; // Segundo servomotor
+int potPin2 = A1; // Segundo potenciómetro
+int servoPin2 = 4; // Pin para el segundo servomotor
+
+// En el setup():
+servo_4.attach(servoPin2); // Adjuntamos el segundo servomotor al pin 4
+
+// En el loop():
+int potValue2 = analogRead(potPin2); // Leer el segundo potenciómetro
+int angle2 = map(potValue2, 0, 1023, 0, 180); // Convertir a ángulo
+servo_4.write(angle2); // Control del segundo servomotor
+</code>
+        </pre>
+        <button class="copy-solution-button" onclick="copySolutionCode()">Copiar Código de Solución</button>
+    </div>
+
+    <p>¡Espero que disfrutes creando este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+
+    <p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica!</p>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Construye una alarma de proximidad para el hogar con Arduino y un sensor PIR. Ideal para aprender sobre seguridad electrónica y programación con Arduino.">
+    <meta name="keywords" content="Arduino, Alarma de Proximidad, Sensor PIR, Proyecto de Arduino, Seguridad Electrónica, Alarma Casera, Proyectos Arduino Iniciales">
+    <title>Proyecto Inicial: Alarma de Proximidad para el Hogar con Arduino y Sensor PIR - Proyecto Educativo</title>
+    <style>
+        h2 {
+            margin-top: 30px;
+        }
+        p, ul, ol, pre {
+            margin-bottom: 20px;
+        }
+        .code-box {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            background-color: #f0f8ff;
+            position: relative;
+            margin: 20px 0;
+            width: 95%;
+            overflow-x: auto;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .hidden-answer {
+            display: none;
+            margin-top: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            width: 95%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .show-answer {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .answer-spacing {
+            margin-top: 20px;
+        }
+        .copy-solution-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function copyCode() {
+            const codeContent = document.getElementById('codeContent').innerText;
+            navigator.clipboard.writeText(codeContent);
+            alert("¡Código copiado al portapapeles!");
+        }
+
+        function toggleAnswer() {
+            const answer = document.getElementById('answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copySolutionCode() {
+            const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+            navigator.clipboard.writeText(solutionCodeContent);
+            alert("¡Código de la solución copiado al portapapeles!");
+        }
+    </script>
+</head>
+<body>
+    <h1>¡Crea una Alarma de Proximidad para tu Hogar con Arduino y un Sensor PIR! Un Proyecto Educativo y Seguro</h1>
+
+    <p>¡Bienvenidos a un emocionante proyecto educativo de electrónica! Hoy vamos a crear una <strong>Alarma de Proximidad para el Hogar</strong> usando Arduino y un <strong>Sensor de Movimiento PIR</strong>. Esta alarma es perfecta para aprender cómo funcionan los sistemas de seguridad modernos y cómo los podemos implementar fácilmente en nuestros hogares. Además, entenderemos cómo programar en Arduino y a interactuar con sensores y otros componentes electrónicos. ¡Vamos allá! 🚀</p>
+
+    <div class="separator" style="clear: both;">
+        <div class="separator" style="clear: both;"><a href=<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFpwVC43U_A1Zjxc0KA8TkZ12IRoKr7WEVbiUaNSyW8WAh7NvsWpiK0AiOyOPbjPRXn2kZ0l1N-YZtCbbsgNXJk5wQYzV2-bHM5HWpIwNVMdjK8S9jBdPAM96EJeREm-UFmp0ggi7J9xGxYT3VDezWPjc5AwrnycSWvSZxOyZMjlmS-NHZlrhnuVYwRGdv/s1600/p5.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="381" data-original-width="678" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFpwVC43U_A1Zjxc0KA8TkZ12IRoKr7WEVbiUaNSyW8WAh7NvsWpiK0AiOyOPbjPRXn2kZ0l1N-YZtCbbsgNXJk5wQYzV2-bHM5HWpIwNVMdjK8S9jBdPAM96EJeREm-UFmp0ggi7J9xGxYT3VDezWPjc5AwrnycSWvSZxOyZMjlmS-NHZlrhnuVYwRGdv/s1600/p5.png"/></a></div>/></a></div>
+        </a>
+        <p style="text-align: center; font-weight: bold;">Alarma de Proximidad con Sensor PIR y Arduino: Aprende a crear un sistema de seguridad con Arduino para tu hogar.</p>
+    </div>
+
+    <h2>Enlace al Proyecto en Tinkercad - Alarma de Proximidad</h2>
+    <p>Explora cómo funciona este proyecto y experimenta con el circuito interactivo en Tinkercad. Haz clic en el siguiente enlace para acceder: <a href="https://www.tinkercad.com/things/j4NMk2OUF4J-proyecto-inicial-5-alarma-de-proximidad-para-el-hogar-?sharecode=-IFUAA_IrLOp_EIe8rX6y2p30trvpNQpU1_RG0iFODU" target="_blank">Alarma de Proximidad - Proyecto en Tinkercad</a>.</p>
+
+    <h2>Componentes Necesarios</h2>
+    <p>Para realizar este proyecto, necesitarás los siguientes componentes:</p>
+    <ul>
+        <li>1 x Arduino Uno R3</li>
+        <li>1 x Sensor de Movimiento PIR</li>
+        <li>1 x Buzzer o Bocina</li>
+        <li>2 x LEDs (indicadores visuales)</li>
+        <li>2 x Resistencias de 220 Ω (para los LEDs)</li>
+        <li>Cables de Conexión</li>
+        <li>1 x Protoboard</li>
+        <li>Fuente de Alimentación (USB de PC o batería externa)</li>
+    </ul>
+
+    <h2>Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+    <ul>
+        <li><a href="https://amzn.to/4dQTpkX" target="_blank">Kit de componentes Arduino Uno R3 - Incluye Arduino y más</a></li>
+        <li><a href="https://amzn.to/3yGZIsk" target="_blank">Kit de módulos de sensores y componentes - Compatible con Arduino</a></li>
+    </ul>
+
+    <h2>Configuración del Circuito</h2>
+    
+    <h3>Diagrama de Conexión</h3>
+    <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXu5CSrbvxriSFbAGyo7db-VrmAL-0Uyw3YG6z9eLbEkl6pjp_VT7_0BdJ09YtvLxtV6vk_Tcez6KEobvWtNCNcqcr23yGyyVzMgzr-HjdqHSXnY71Ebe1xmu22P5sxwTdNWYPsgvB09Asfe7jjQ73ufp4D4kimQ9UjOTmUt3xUrP9TA7l9xijKTmTpDC7/s1600/p5-ArduinoUno-proyecto-programacion-alarmadeproximidadparaelhogar.jpg" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="1704" data-original-width="1755" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXu5CSrbvxriSFbAGyo7db-VrmAL-0Uyw3YG6z9eLbEkl6pjp_VT7_0BdJ09YtvLxtV6vk_Tcez6KEobvWtNCNcqcr23yGyyVzMgzr-HjdqHSXnY71Ebe1xmu22P5sxwTdNWYPsgvB09Asfe7jjQ73ufp4D4kimQ9UjOTmUt3xUrP9TA7l9xijKTmTpDC7/s1600/p5-ArduinoUno-proyecto-programacion-alarmadeproximidadparaelhogar.jpg"/></a></div>
+
+    <h3>Conexiones:</h3>
+    <ul>
+        <li><strong>Sensor PIR:</strong>
+            <ul>
+                <li>Conecta VCC a 5V del Arduino.</li>
+                <li>Conecta GND a GND del Arduino.</li>
+                <li>Conecta OUT al pin A0 de Arduino.</li>
+            </ul>
+        </li>
+        <li><strong>Buzzer o Bocina:</strong>
+            <ul>
+                <li>Conecta un pin del buzzer al pin 6 de Arduino.</li>
+                <li>Conecta el otro pin del buzzer a GND.</li>
+            </ul>
+        </li>
+        <li><strong>LEDs:</strong>
+            <ul>
+                <li>LED1: Ánodo al pin digital 5 de Arduino, cátodo a GND a través de una resistencia de 220Ω.</li>
+                <li>LED2: Ánodo al pin digital 7 de Arduino, cátodo a GND a través de una resistencia de 220Ω.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Código para la Alarma de Proximidad con Arduino</h2>
+    <p>¡Es hora de programar! Aquí tienes el código completo para tu proyecto de alarma de proximidad. Simplemente copia y pega este código en tu Arduino IDE para empezar:</p>
+
+    <div class="code-box">
+        <button class="copy-button" onclick="copyCode()">Copiar Código</button>
+        <pre id="codeContent">
+<code>
+int codigo;
+bool estado = false;  // Cambiado a tipo booleano para mayor claridad
+const int led1 = 5;
+const int led2 = 7;
+const int bocina = 6;
+const int sensor = A0;
+const int contra = 1234;
+
+void setup() {
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(sensor, INPUT);
+  pinMode(bocina, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (!estado) {  // Si la alarma no está activada
+    Serial.println("🔒 INGRESA CÓDIGO DE ACTIVACIÓN");
+    while (Serial.available() == 0) {}  // Esperar hasta que haya datos disponibles
+    codigo = Serial.parseInt();
+    if (codigo == contra) {  // Si el código es correcto
+      Serial.println("✅ ALARMA ACTIVADA");
+      estado = true;  // Cambia el estado a activado
+    }
+  }
+
+  if (estado) {  // Si la alarma está activada
+    Serial.println("🔔 ALARMA ACTIVADA - INGRESE CÓDIGO PARA DESACTIVAR");
+    if (Serial.available() > 0) {
+      codigo = Serial.parseInt();
+      if (codigo == contra) {  // Si el código es correcto
+        Serial.println("🛑 ALARMA DESACTIVADA SIN MOVIMIENTO");
+        estado = false;  // Cambia el estado a desactivado
+        noTone(bocina);  // Apagar la bocina
+        digitalWrite(led1, LOW);  // Apagar LED1
+        digitalWrite(led2, LOW);  // Apagar LED2
+      }
+    }
+  }
+
+  if (estado && digitalRead(sensor) == HIGH) {  // Si la alarma está activada y se detecta movimiento
+    Serial.println("🚨 MOVIMIENTO DETECTADO");
+    Serial.println("⏳ INGRESE EL CÓDIGO PARA DESACTIVAR LA ALARMA");
+
+    while (estado) {  // Mientras la alarma esté activada
+      tone(bocina, 2500);  // Sonar la bocina
+      digitalWrite(led1, LOW);  // Parpadear LED1 y LED2
+      digitalWrite(led2, HIGH);
+      delay(1000);
+      digitalWrite(led1, HIGH);
+      digitalWrite(led2, LOW);
+      delay(1000);
+
+      if (Serial.available() > 0) {  // Si se ingresa un código
+        codigo = Serial.parseInt();
+        if (codigo == contra) {  // Si el código es correcto
+          Serial.println("🔕 ALARMA DESACTIVADA");
+          noTone(bocina);  // Apagar la bocina
+          digitalWrite(led1, LOW);  // Apagar LED1
+          digitalWrite(led2, LOW);  // Apagar LED2
+          estado = false;  // Cambiar el estado a desactivado
+        }
+      }
+    }
+  }
+}
+</code>
+        </pre>
+    </div>
+
+    <h2>Explicación del Código</h2>
+    <p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+    <ol>
+        <li><strong>Variables Globales:</strong> Se declaran las variables globales como <code>codigo</code>, <code>estado</code>, <code>led1</code>, <code>led2</code>, <code>bocina</code>, <code>sensor</code>, y <code>contra</code>, que controlan el comportamiento de la alarma y su activación/desactivación.</li>
+        
+        <li><strong>void setup() { ... }:</strong> La función <code>setup()</code> configura los pines de los LEDs, el buzzer y el sensor como entradas o salidas y también inicia la comunicación serial para interactuar con el usuario a través del monitor serie.</li>
+        
+        <li><strong>void loop() { ... }:</strong> La función <code>loop()</code> se ejecuta repetidamente en un bucle infinito. Dentro del bucle, se realizan las siguientes tareas:
+            <ul>
+                <li><strong>Activación de Alarma:</strong> Si la alarma no está activada, solicita un código de activación a través del monitor serie.</li>
+                <li><strong>Desactivación de Alarma:</strong> Una vez activada la alarma, puede desactivarse introduciendo el código correcto.</li>
+                <li><strong>Detección de Movimiento:</strong> Si la alarma está activada y el sensor PIR detecta movimiento, la bocina suena y los LEDs parpadean. La alarma puede desactivarse introduciendo el código correcto.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>Problemas Comunes y Soluciones</h2>
+    <ul>
+        <li><strong>El buzzer no suena:</strong> Verifica que las conexiones del buzzer sean correctas y que el pin de control esté correctamente asignado en el código.</li>
+        <li><strong>El sensor PIR no detecta movimiento:</strong> Asegúrate de que el sensor esté conectado correctamente y de que esté bien orientado para detectar movimiento en el área deseada.</li>
+        <li><strong>El código no se registra en el monitor serie:</strong> Verifica que la velocidad de baudios en el monitor serie esté configurada a 9600 y que el puerto serie correcto esté seleccionado.</li>
+    </ul>
+
+    <h2>Desafío para el Usuario</h2>
+    <p>¿Cómo podrías modificar el proyecto para agregar un segundo sensor PIR para cubrir un área más amplia? ¡Déjanos tu idea en los comentarios!</p>
+
+    <button class="show-answer" onclick="toggleAnswer()">Mostrar Solución</button>
+
+    <div class="answer-spacing"></div>
+
+    <div class="hidden-answer" id="answer">
+        <p>Puedes agregar otro sensor PIR en una posición diferente y modificar el código para verificar ambos sensores. Aquí tienes un ejemplo de cómo hacerlo:</p>
+        <pre id="solutionCodeContent">
+<code>
+// Añade estas líneas al código existente
+
+const int sensor2 = A1; // Segundo sensor PIR
+
+void setup() {
+  pinMode(sensor2, INPUT); // Configura el segundo sensor como entrada
+}
+
+void loop() {
+  // Si cualquiera de los dos sensores detecta movimiento
+  if (estado && (digitalRead(sensor) == HIGH || digitalRead(sensor2) == HIGH)) {
+    // El resto del código de detección se mantiene igual
+  }
+}
+</code>
+        </pre>
+        <button class="copy-solution-button" onclick="copySolutionCode()">Copiar Código de Solución</button>
+    </div>
+
+    <p>¡Espero que disfrutes creando este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+
+    <p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica!</p>
+</body>
+</html>

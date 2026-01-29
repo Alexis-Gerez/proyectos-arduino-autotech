@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Construye un sistema de control de nivel de agua con Arduino, sensor ultrasónico, servo motor y display de 7 segmentos. Aprende integración de sensores y programación de Arduino.">
+    <meta name="keywords" content="Arduino, Control de Nivel de Agua, Sensor Ultrasónico, Servo Motor, Display de 7 Segmentos, Electrónica, Proyectos Intermedios, Automatización con Arduino">
+    <title>Proyecto Intermedio: Control de Nivel de Agua con Arduino, Sensor Ultrasónico y Display de 7 Segmentos</title>
+    <style>
+        h2 {
+            margin-top: 30px;
+        }
+        p, ul, ol, pre {
+            margin-bottom: 20px;
+        }
+        .code-box {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            background-color: #f0f8ff;
+            position: relative;
+            margin: 20px 0;
+            width: 95%;
+            overflow-x: auto;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .hidden-answer {
+            display: none;
+            margin-top: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            width: 95%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .show-answer {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .answer-spacing {
+            margin-top: 20px;
+        }
+        .copy-solution-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function copyCode() {
+            const codeContent = document.getElementById('codeContent').innerText;
+            navigator.clipboard.writeText(codeContent);
+            alert("¡Código copiado al portapapeles!");
+        }
+
+        function toggleAnswer() {
+            const answer = document.getElementById('answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copySolutionCode() {
+            const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+            navigator.clipboard.writeText(solutionCodeContent);
+            alert("¡Código de la solución copiado al portapapeles!");
+        }
+    </script>
+</head>
+<body>
+    <h1>🌊 Control de Nivel de Agua con Arduino, Sensor Ultrasónico, Servo Motor y Display de 7 Segmentos 🚰</h1>
+
+    <p>¡Bienvenidos a un emocionante proyecto de nivel intermedio con Arduino! Este proyecto titulado "<strong>Control de Nivel de Agua con Arduino</strong>" se centra en el uso de un sensor ultrasónico para medir el nivel de agua, un servo motor para simular la apertura o cierre de una válvula, y un display de 7 segmentos para mostrar el estado del nivel de agua en tiempo real. Este proyecto es perfecto para aquellos que buscan profundizar en la programación de Arduino y en la integración de múltiples componentes electrónicos en un sistema. ¡Vamos a ello! 🚀</p>
+
+    <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhihApji6DCwX_vzumHTqNU_3AYRNen7kVJZXVuGg2u1waYSYzHAfDXbm4-7g40K5DpHtGPolLsoNl5vBtEdYFRLIshZpoSyTb7hHlqq_rWaLEsWySL-jBZxC3ncWsrhXOI5Q0fdS7spkevY7ugACyguzb7B4TnQ5XTXNpwk6fCuyCHsjrlt46DucwafXMu/s1600/p7.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="381" data-original-width="678" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhihApji6DCwX_vzumHTqNU_3AYRNen7kVJZXVuGg2u1waYSYzHAfDXbm4-7g40K5DpHtGPolLsoNl5vBtEdYFRLIshZpoSyTb7hHlqq_rWaLEsWySL-jBZxC3ncWsrhXOI5Q0fdS7spkevY7ugACyguzb7B4TnQ5XTXNpwk6fCuyCHsjrlt46DucwafXMu/s1600/p7.png"/></a></div>
+        </a>
+        <p style="text-align: center; font-weight: bold;">Control de Nivel de Agua con Arduino: Aprende a medir el nivel de agua con un sensor ultrasónico y controlar una válvula simulada con un servo motor.</p>
+    </div>
+
+    <h2>Enlace al Proyecto en Tinkercad - Control de Nivel de Agua</h2>
+    <p>Explora cómo funciona este proyecto y experimenta con el circuito interactivo en Tinkercad. Haz clic en el siguiente enlace para acceder: <a href="https://www.tinkercad.com/things/3N63yFVGyDS-proyecto-intermedio-1-control-de-nivel-de-agua-con-ultrasonico?sharecode=ECt_GNZzw1PsMI3Qll-QVU2P65au0cj61814xxkKF-M" target="_blank">Control de Nivel de Agua - Proyecto en Tinkercad</a>.</p>
+
+    <h2>Componentes Necesarios</h2>
+    <p>Para llevar a cabo este proyecto, vamos a necesitar los siguientes componentes:</p>
+    <ul>
+        <li>1 x Arduino Uno</li>
+        <li>1 x Sensor Ultrasónico HC-SR04</li>
+        <li>1 x Servo Motor</li>
+        <li>1 x Display de 7 Segmentos</li>
+        <li>Cables de Conexión</li>
+        <li>1 x Protoboard</li>
+        <li>Fuente de Alimentación (USB de la PC o batería externa)</li>
+    </ul>
+
+    <h2>Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+    <ul>
+        <li><a href="https://amzn.to/4dQTpkX" target="_blank">Kit de Arduino Uno R3 - Incluye todo lo necesario</a></li>
+        <li><a href="https://amzn.to/3yGZIsk" target="_blank">Kit de módulos de sensores y componentes - Compatible con Arduino</a></li>
+    </ul>
+
+    <h2>Configuración del Circuito</h2>
+    
+    <h3>Diagrama de Conexión</h3>
+    <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEga2UtDtan1A1NuR1YBRBlpFgFFWPiDWw2O4NZLwLgKlF_7Z8aQSse7dsibwJ_EBkZC7M3L-_RAl2tEiB9jt9gb_1HuzhKJD4csrYwy7-bbyw1qbXVGp2nesNwHBanGCn7IuYhH8jbdk22qXMz1sgxcWDinHMzNix6xQNGWpx1QaPkEy81md8xvt_Sx2cy_/s1600/p7-ArduinoUno-proyecto-programacion-controldeniveldeagua.jpg" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="1704" data-original-width="1755" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEga2UtDtan1A1NuR1YBRBlpFgFFWPiDWw2O4NZLwLgKlF_7Z8aQSse7dsibwJ_EBkZC7M3L-_RAl2tEiB9jt9gb_1HuzhKJD4csrYwy7-bbyw1qbXVGp2nesNwHBanGCn7IuYhH8jbdk22qXMz1sgxcWDinHMzNix6xQNGWpx1QaPkEy81md8xvt_Sx2cy_/s1600/p7-ArduinoUno-proyecto-programacion-controldeniveldeagua.jpg"/></a></div>
+
+    <h3>Conexiones:</h3>
+    <ul>
+        <li><strong>Sensor Ultrasónico HC-SR04:</strong>
+            <ul>
+                <li>Conecta VCC a 5V de Arduino.</li>
+                <li>Conecta GND a GND de Arduino.</li>
+                <li>Conecta Trig al pin 8 de Arduino.</li>
+                <li>Conecta Echo al pin 9 de Arduino.</li>
+            </ul>
+        </li>
+        <li><strong>Servo Motor:</strong>
+            <ul>
+                <li>Conecta VCC (cable rojo) a 5V de Arduino.</li>
+                <li>Conecta GND (cable negro) a GND de Arduino.</li>
+                <li>Conecta Señal (cable amarillo) al pin 3 de Arduino.</li>
+            </ul>
+        </li>
+        <li><strong>Display de 7 Segmentos:</strong>
+            <ul>
+                <li>Conectar los segmentos (A-G) a los pines digitales de Arduino: 4, 5, 6, 7, 10, 11, 12.</li>
+                <li>Conecta VCC a 5V de Arduino.</li>
+                <li>Conecta GND a GND de Arduino.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Conexión en Tinkercad (Simulación)</h3>
+    <p>Para simular correctamente este proyecto en Tinkercad, asegúrate de seguir estas instrucciones:</p>
+    <ul>
+        <li><strong>Conectar el Display de 7 Segmentos:</strong> Asegúrate de usar un display común cátodo (o ajustar la configuración si es un ánodo común).</li>
+        <li><strong>Configurar el Sensor Ultrasónico:</strong> Asegúrate de que el sensor HC-SR04 esté correctamente colocado en el protoboard y conectado a los pines indicados.</li>
+    </ul>
+
+    <h2>Código para el Control de Nivel de Agua con Arduino</h2>
+    <p>¡Es hora de programar! Aquí tienes el código completo para tu proyecto de control de nivel de agua. Simplemente copia y pega este código en tu Arduino IDE para empezar:</p>
+
+    <div class="code-box">
+        <button class="copy-button" onclick="copyCode()">Copiar Código</button>
+        <pre id="codeContent">
+<code>
+#include <Servo.h>  // Librería para controlar el servo
+
+// Definición de pines
+const int trigPin = 8;
+const int echoPin = 9;
+const int servoPin = 3;
+const int displayPins[7] = {4, 5, 6, 7, 10, 11, 12}; // Pines para el display de 7 segmentos
+
+Servo myServo;  // Crear un objeto Servo
+
+void setup() {
+  // Configuración del sensor ultrasónico
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  
+  // Configuración del servo
+  myServo.attach(servoPin);
+  
+  // Configuración del display de 7 segmentos
+  for (int i = 0; i < 7; i++) {
+    pinMode(displayPins[i], OUTPUT);
+    digitalWrite(displayPins[i], LOW); // Inicializar los segmentos como apagados
+  }
+
+  // Inicialización de la posición del servo
+  myServo.write(90);  // Posición media
+  Serial.begin(9600);  // Iniciar la comunicación serie
+}
+
+void loop() {
+  long duration;
+  int distance;
+  
+  // Enviar un pulso de sonido
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  
+  // Leer la duración del pulso de retorno
+  duration = pulseIn(echoPin, HIGH);
+  
+  // Calcular la distancia en cm
+  distance = duration * 0.034 / 2;
+
+  // Mostrar distancia en el monitor serie
+  Serial.print("Nivel de Agua: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // Control del servo y display basado en el nivel de agua
+  if (distance >= 20 && distance < 50) {  // Nivel bajo (20-50 cm)
+    myServo.write(0);  // Cerrar válvula
+    mostrarNumero(0);  // Mostrar "0" en el display
+    Serial.println("Nivel de Agua: Bajo (0)");
+  } else if (distance >= 50 && distance < 80) {  // Nivel medio (50-80 cm)
+    myServo.write(90);  // Posición media de la válvula
+    mostrarNumero(1);  // Mostrar "1" en el display
+    Serial.println("Nivel de Agua: Medio (1)");
+  } else if (distance >= 80 && distance <= 100) {  // Nivel alto (80-100 cm)
+    myServo.write(180);  // Abrir válvula
+    mostrarNumero(2);  // Mostrar "2" en el display
+    Serial.println("Nivel de Agua: Alto (2)");
+  } else {
+    // Si la distancia es inválida o fuera de rango, mostrar un error en el display
+    mostrarNumero(3);  // Mostrar "3" para indicar error o fuera de rango
+    Serial.println("Nivel de Agua: Error (3)");
+  }
+
+  delay(1000);  // Espera 1 segundo antes de la siguiente lectura
+}
+
+// Función para mostrar números en el display de 7 segmentos
+void mostrarNumero(int num) {
+  // Definición de los números 0 a 3 en el display de 7 segmentos
+  byte numeros[4][7] = {
+    {1, 1, 1, 1, 1, 1, 0}, // 0 (A, B, C, D, E, F encendidos; G apagado)
+    {0, 1, 1, 0, 0, 0, 0}, // 1 (B, C encendidos; A, D, E, F, G apagados)
+    {1, 1, 0, 1, 1, 0, 1}, // 2 (A, B, D, E, G encendidos; C, F apagados)
+    {1, 1, 1, 1, 0, 0, 1}  // 3 (A, B, C, D, G encendidos; E, F apagados)
+  };
+  
+  for (int i = 0; i < 7; i++) {
+    digitalWrite(displayPins[i], numeros[num][i]);
+  }
+}
+</code>
+        </pre>
+    </div>
+
+    <h2>Explicación del Código</h2>
+    <p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+    <ol>
+        <li><strong>Configuración de Pines y Componentes:</strong> Se configuran los pines para el sensor ultrasónico, el servo motor y el display de 7 segmentos. Esto asegura que cada componente funcione correctamente.</li>
+        <li><strong>Sensor Ultrasónico:</strong> Los pines <code>trigPin</code> y <code>echoPin</code> se utilizan para enviar y recibir pulsos ultrasónicos que permiten calcular la distancia.</li>
+        <li><strong>Servo Motor:</strong> Utilizamos el pin <code>servoPin</code> para controlar la posición de la válvula simulada.</li>
+        <li><strong>Display de 7 Segmentos:</strong> Usamos los pines 4, 5, 6, 7, 10, 11 y 12 para controlar los segmentos del display y mostrar números.</li>
+        <li><strong>Control del Nivel de Agua:</strong> Según el nivel de agua medido por el sensor ultrasónico, se ajusta la posición del servo motor para abrir o cerrar una válvula simulada. Dependiendo del rango de la distancia detectada, se muestra un número en el display de 7 segmentos indicando el nivel de agua: "0" para nivel bajo, "1" para nivel medio, "2" para nivel alto y "3" para error.</li>
+    </ol>
+
+    <h2>Problemas Comunes y Soluciones</h2>
+    <ul>
+        <li><strong>El Display de 7 Segmentos no muestra información correcta:</strong> Verifica que las conexiones de los segmentos del display estén correctamente conectadas a los pines de Arduino.</li>
+        <li><strong>El Servo Motor no se mueve:</strong> Asegúrate de que el servo esté correctamente conectado al pin 3 de Arduino y de que esté recibiendo alimentación suficiente.</li>
+        <li><strong>El Sensor Ultrasónico no responde:</strong> Revisa que los pines de <code>Trig</code> y <code>Echo</code> estén conectados correctamente y que el sensor esté orientado adecuadamente para medir la distancia.</li>
+    </ul>
+
+    <h2>Desafío para el Usuario</h2>
+    <p>¿Cómo podrías mejorar este proyecto para incluir un sistema de alerta de sobrellenado? Por ejemplo, podrías agregar un LED que parpadee o un buzzer que suene cuando el nivel de agua exceda un límite seguro. ¡Deja tus ideas en los comentarios!</p>
+
+    <button class="show-answer" onclick="toggleAnswer()">Mostrar Solución</button>
+
+    <div class="answer-spacing"></div>
+
+    <div class="hidden-answer" id="answer">
+        <p>Puedes añadir un LED o un buzzer al circuito y modificar el código para activar una alerta. Aquí tienes un ejemplo de cómo hacerlo:</p>
+        <pre id="solutionCodeContent">
+<code>
+// Añade estas líneas al código existente
+
+const int ledPin = 13; // Pin del LED de alerta
+const int buzzerPin = 8; // Pin del buzzer de alerta
+const float waterLimit = 90.0; // Límite de nivel de agua en cm
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
+  // El resto del setup() permanece igual
+}
+
+void loop() {
+  // Código existente para leer el sensor y mostrar el nivel de agua
+  if (distance > waterLimit) {
+    digitalWrite(ledPin, HIGH); // Enciende el LED
+    tone(buzzerPin, 1000); // Activa el buzzer
+  } else {
+    digitalWrite(ledPin, LOW); // Apaga el LED
+    noTone(buzzerPin); // Apaga el buzzer
+  }
+}
+</code>
+        </pre>
+        <button class="copy-solution-button" onclick="copySolutionCode()">Copiar Código de Solución</button>
+    </div>
+
+    <p>¡Espero que disfrutes construyendo este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+
+    <p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica!</p>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crea una caja musical interactiva controlada por luz con Arduino. Aprende a programar un sistema musical usando un fotoresistor. Proyecto educativo ideal para principiantes.">
+    <meta name="keywords" content="Arduino, Caja Musical, Fotoresistor, Luz, Buzzer, Proyecto de Arduino, Electrónica, Sensor de Luz, Proyectos Iniciales">
+    <title>Proyecto Inicial: Caja Musical Controlada por Luz con Arduino - Proyecto Educativo</title>
+    <style>
+        h2 {
+            margin-top: 30px;
+        }
+        p, ul, ol, pre {
+            margin-bottom: 20px;
+        }
+        .code-box {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            background-color: #f0f8ff;
+            position: relative;
+            margin: 20px 0;
+            width: 95%;
+            overflow-x: auto;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .hidden-answer {
+            display: none;
+            margin-top: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            width: 95%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .show-answer {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .answer-spacing {
+            margin-top: 20px;
+        }
+        .copy-solution-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function copyCode() {
+            const codeContent = document.getElementById('codeContent').innerText;
+            navigator.clipboard.writeText(codeContent);
+            alert("¡Código copiado al portapapeles!");
+        }
+
+        function toggleAnswer() {
+            const answer = document.getElementById('answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copySolutionCode() {
+            const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+            navigator.clipboard.writeText(solutionCodeContent);
+            alert("¡Código de la solución copiado al portapapeles!");
+        }
+    </script>
+</head>
+<body>
+    <h1>🎵 Proyecto Inicial: ¡Crea una Caja Musical Controlada por Luz con Arduino! 🎶</h1>
+
+    <p>¡Hola, amante de la música y la tecnología! Hoy vamos a crear un proyecto emocionante que te permitirá explorar el mundo de los sensores y la generación de sonidos con Arduino: <strong>Caja Musical Controlada por Luz con Arduino</strong>. Este proyecto es perfecto para aprender cómo usar un fotoresistor para detectar luz y un buzzer para generar diferentes tonos. ¡Vamos a sumergirnos en la magia de la música electrónica! 🎼🌞</p>
+
+    <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi53DXY5ihQ8KIXvDzVPMGu25zmmmz_M9qDtOR0KTWxt8oYgYhbuGLgoXZr9KPvbeZtTNh9kTsL4XxsRi1m-FpEwo1pGjaRfXJGANujNg5AHwbh9HbZdMEl4grn6d_g8cRE3ZZoU8uPF3jyfz0WwrGm-Q1COUoqJJTEZZxTiEZ44ryAW7HdC4Ph-9HZl2Kp/s1600/p7-cajamusical.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="381" data-original-width="678" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi53DXY5ihQ8KIXvDzVPMGu25zmmmz_M9qDtOR0KTWxt8oYgYhbuGLgoXZr9KPvbeZtTNh9kTsL4XxsRi1m-FpEwo1pGjaRfXJGANujNg5AHwbh9HbZdMEl4grn6d_g8cRE3ZZoU8uPF3jyfz0WwrGm-Q1COUoqJJTEZZxTiEZ44ryAW7HdC4Ph-9HZl2Kp/s1600/p7-cajamusical.png"/></a></div>
+        </a>
+        <p style="text-align: center; font-weight: bold;">Caja Musical Controlada por Luz con Arduino: Aprende a crear una caja musical interactiva utilizando un fotoresistor y un buzzer.</p>
+    </div>
+
+    <h2>Enlace al Proyecto en Tinkercad - Caja Musical</h2>
+    <p>Explora cómo funciona este proyecto y experimenta con el circuito interactivo en Tinkercad. Haz clic en el siguiente enlace para acceder: <a href=https://www.tinkercad.com/things/llEivh1TEnx-proyecto-inicial-caja-musical-controlada-por-luz target="_blank">Caja Musical - Proyecto en Tinkercad</a>.</p>
+
+    <h2>Componentes Necesarios</h2>
+    <p>Para realizar este proyecto, necesitarás los siguientes componentes:</p>
+    <ul>
+        <li>1 x Arduino UNO</li>
+        <li>1 x Fotoresistor (LDR)</li>
+        <li>1 x Buzzer Piezoeléctrico</li>
+        <li>1 x Resistencia de 10 kΩ</li>
+        <li>Cables de Conexión</li>
+        <li>Protoboard</li>
+    </ul>
+
+    <h2>Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+    <ul>
+        <li><a href="https://amzn.to/4dQTpkX" target="_blank">Kit de Arduino Uno R3 - Incluye todo lo necesario</a></li>
+        <li><a href="https://amzn.to/3yGZIsk" target="_blank">Kit de módulos de sensores y componentes - Compatible con Arduino</a></li>
+    </ul>
+
+    <h2>Configuración del Circuito</h2>
+    
+    <h3>Diagrama de Conexión</h3>
+    <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwym1mDJ_FSkQNVGF9KlTk65sSVVtM2zvtoucvp1Z7a8UYWok-Mug08W5JYA-zRBQkYgGZMJHtuDy959IxKDgTBnG8hDbvMbdm-hVdO51Th1VAVXsbi7MAZWikyTHbDaHVipqBtmLbLQ-TyFznS7PxvhiEdFfJk_P_offhVZngLxI5go5Ya9FBL2Y5K9Vx/s1600/p7-ArduinoUno-proyecto-programacion-cajamusicalconldrypiezo.jpg" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="1704" data-original-width="1755" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwym1mDJ_FSkQNVGF9KlTk65sSVVtM2zvtoucvp1Z7a8UYWok-Mug08W5JYA-zRBQkYgGZMJHtuDy959IxKDgTBnG8hDbvMbdm-hVdO51Th1VAVXsbi7MAZWikyTHbDaHVipqBtmLbLQ-TyFznS7PxvhiEdFfJk_P_offhVZngLxI5go5Ya9FBL2Y5K9Vx/s1600/p7-ArduinoUno-proyecto-programacion-cajamusicalconldrypiezo.jpg"/></a></div>
+
+    <h3>Conexiones:</h3>
+    <ul>
+        <li><strong>Fotoresistor (LDR):</strong>
+            <ul>
+                <li>Conecta un terminal del LDR a 5V de Arduino.</li>
+                <li>Conecta el otro terminal del LDR a A0 de Arduino y al mismo tiempo a un extremo de la resistencia de 10 kΩ.</li>
+                <li>Conecta el otro extremo de la resistencia de 10 kΩ a GND de Arduino.</li>
+            </ul>
+        </li>
+        <li><strong>Buzzer:</strong>
+            <ul>
+                <li>Conecta el pin positivo (+) del buzzer al pin 8 de Arduino.</li>
+                <li>Conecta el pin negativo (-) del buzzer a GND de Arduino.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Código para Controlar la Caja Musical con Luz</h2>
+    <p>¡Aquí tienes el código completo! Puedes copiarlo fácilmente haciendo clic en el botón "Copiar Código".</p>
+
+    <div class="code-box">
+        <button class="copy-button" onclick="copyCode()">Copiar Código</button>
+        <pre id="codeContent">
+<code>
+// Definición de pines
+const int ldrPin = A0;  // Pin del fotoresistor
+const int buzzerPin = 8;  // Pin del buzzer
+
+// Variables
+int ldrValue = 0;  // Valor leído del fotoresistor
+int toneFrequency = 0;  // Frecuencia del tono que se reproducirá
+
+void setup() {
+  pinMode(ldrPin, INPUT);  // Configuración del pin del fotoresistor como entrada
+  pinMode(buzzerPin, OUTPUT);  // Configuración del pin del buzzer como salida
+  Serial.begin(9600);  // Iniciar la comunicación serie para la depuración
+}
+
+void loop() {
+  ldrValue = analogRead(ldrPin);  // Leer el valor del fotoresistor
+  
+  // Mostrar el valor del fotoresistor en el monitor serie
+  Serial.print("Nivel de Luz: ");
+  Serial.println(ldrValue);
+
+  // Calcular la frecuencia del tono basado en el nivel de luz
+  if (ldrValue < 300) {  // Luz baja
+    toneFrequency = 262;  // Nota C4 (Do)
+    Serial.println("Reproduciendo: Do (C4)");
+  } else if (ldrValue >= 300 && ldrValue < 600) {  // Luz media
+    toneFrequency = 330;  // Nota E4 (Mi)
+    Serial.println("Reproduciendo: Mi (E4)");
+  } else {  // Luz alta
+    toneFrequency = 392;  // Nota G4 (Sol)
+    Serial.println("Reproduciendo: Sol (G4)");
+  }
+
+  // Reproducir el tono correspondiente en el buzzer
+  tone(buzzerPin, toneFrequency);
+  delay(500);  // Duración del tono
+  noTone(buzzerPin);  // Apagar el buzzer
+  delay(500);  // Pausa entre tonos
+
+  delay(1000);  // Espera 1 segundo antes de la siguiente lectura
+}
+</code>
+        </pre>
+    </div>
+
+    <h2>Explicación del Código</h2>
+    <p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+    <ol>
+        <li><strong>const int ldrPin = A0;:</strong> Definimos el pin A0 para leer el valor del fotoresistor (LDR).</li>
+        
+        <li><strong>const int buzzerPin = 8;:</strong> Configuramos el pin 8 para conectar el buzzer piezoeléctrico, que generará los tonos.</li>
+        
+        <li><strong>analogRead(pin):</strong> Esta función lee el valor analógico del LDR, que cambia según la cantidad de luz que recibe.</li>
+        
+        <li><strong>if (ldrValue < 300) { ... }:</strong> Esta estructura condicional selecciona el tono a reproducir dependiendo del nivel de luz detectado por el LDR. Se reproducen diferentes notas musicales (C4, E4, G4) basadas en los rangos de luz.</li>
+        
+        <li><strong>tone(buzzerPin, toneFrequency):</strong> Esta función genera el tono correspondiente en el buzzer basado en la frecuencia calculada.</li>
+        
+        <li><strong>noTone(buzzerPin):</strong> Esta función detiene la generación del tono en el buzzer después de la duración especificada.</li>
+    </ol>
+
+    <h2>Problemas Comunes y Soluciones</h2>
+    <ul>
+        <li><strong>El buzzer no suena:</strong> Verifica que las conexiones del buzzer sean correctas y que el pin de salida esté configurado correctamente en el código.</li>
+        <li><strong>El fotoresistor no responde a los cambios de luz:</strong> Asegúrate de que el fotoresistor esté conectado correctamente y de que la resistencia de 10 kΩ esté en el lugar adecuado para crear un divisor de tensión.</li>
+        <li><strong>Los tonos son incorrectos:</strong> Revisa los valores de las frecuencias asignadas en el código y ajusta los rangos de luz si es necesario.</li>
+    </ul>
+
+    <h2>Desafío para el Usuario</h2>
+    <p>¿Cómo podrías modificar el proyecto para agregar más notas o crear una melodía completa en función del nivel de luz? ¡Déjanos tu idea en los comentarios!</p>
+
+    <button class="show-answer" onclick="toggleAnswer()">Mostrar Solución</button>
+
+    <div class="answer-spacing"></div>
+
+    <div class="hidden-answer" id="answer">
+        <p>Puedes crear un array de frecuencias para cada nota musical y usar un bucle para recorrer el array en función del nivel de luz. Aquí tienes un ejemplo:</p>
+        <pre id="solutionCodeContent">
+<code>
+// Añade estas líneas al código existente
+
+const int melody[] = {262, 294, 330, 349, 392};  // Array de notas (C4, D4, E4, F4, G4)
+int melodyIndex = 0;  // Índice de la nota actual
+
+void loop() {
+  ldrValue = analogRead(ldrPin);
+  melodyIndex = map(ldrValue, 0, 1023, 0, 4);  // Mapear el valor de luz a un índice de nota
+
+  tone(buzzerPin, melody[melodyIndex]);  // Reproducir la nota correspondiente
+  delay(500);
+  noTone(buzzerPin);
+  delay(500);
+}
+</code>
+        </pre>
+        <button class="copy-solution-button" onclick="copySolutionCode()">Copiar Código de Solución</button>
+    </div>
+
+    <p>¡Espero que disfrutes creando este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+    
+    <p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica! 🎵</p>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crea una señal de advertencia con LEDs y Arduino. Aprende a programar un sistema de señalización simple con un pulsador. Proyecto educativo para principiantes.">
+    <meta name="keywords" content="Arduino, Señal de advertencia, LED, Pulsador, Proyecto de Arduino, Electrónica, Señalización con LEDs, Proyecto Inicial">
+    <title>Proyecto Inicial: Señal de Advertencia con LEDs y Arduino - Proyecto Educativo</title>
+    <style>
+        h2 {
+            margin-top: 30px;
+        }
+        p, ul, ol, pre {
+            margin-bottom: 20px;
+        }
+        .code-box {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            background-color: #f0f8ff;
+            position: relative;
+            margin: 20px 0;
+            width: 95%;
+            overflow-x: auto;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .hidden-answer {
+            display: none;
+            margin-top: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            width: 95%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .show-answer {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .answer-spacing {
+            margin-top: 20px;
+        }
+        .copy-solution-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function copyCode() {
+            const codeContent = document.getElementById('codeContent').innerText;
+            navigator.clipboard.writeText(codeContent);
+            alert("¡Código copiado al portapapeles!");
+        }
+
+        function toggleAnswer() {
+            const answer = document.getElementById('answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copySolutionCode() {
+            const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+            navigator.clipboard.writeText(solutionCodeContent);
+            alert("¡Código de la solución copiado al portapapeles!");
+        }
+    </script>
+</head>
+<body>
+    <h1>¡Crea una Señal de Advertencia con LEDs y Arduino! Un Proyecto Divertido y Educativo</h1>
+
+    <p>¡Hola, entusiasta de la tecnología! Hoy te traigo un proyecto emocionante que te ayudará a crear un sistema de señalización simple usando Arduino, LEDs y un pulsador: <strong>Señal de Advertencia con LEDs</strong>. Este proyecto es perfecto para aprender sobre la programación de microcontroladores y la manipulación de hardware básico como LEDs y pulsadores. ¡Pongámonos manos a la obra! 😄</p>
+
+    <div class="separator" style="clear: both;">
+        <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijfLPS_jaKyIX4jSRXU7FEmcATH8AyYXKDLeWi7LXq7pY3lid9Y9OLAeFiGkzoVr0uV6sjiqa3AdLua0OaRAGciLQp4HXKso8UCf2LI-Tw73ZtAPZCb6iU38VzLJeT1mxbTxLsoQjJKuKLJixKTCV96u1nPlhEendHWMjWoJwyLyFRgLgjZ2aO1eZ1DQ_Q/s1600/p1.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="381" data-original-width="678" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijfLPS_jaKyIX4jSRXU7FEmcATH8AyYXKDLeWi7LXq7pY3lid9Y9OLAeFiGkzoVr0uV6sjiqa3AdLua0OaRAGciLQp4HXKso8UCf2LI-Tw73ZtAPZCb6iU38VzLJeT1mxbTxLsoQjJKuKLJixKTCV96u1nPlhEendHWMjWoJwyLyFRgLgjZ2aO1eZ1DQ_Q/s1600/p1.png"/></a></div>
+        </a>
+        <p style="text-align: center; font-weight: bold;">Señal de Advertencia con LEDs y Arduino: Aprende a crear un sistema de señalización con LEDs y un pulsador utilizando Arduino.</p>
+    </div>
+
+    <h2>Enlace al Proyecto en Tinkercad - Señal de Advertencia</h2>
+    <p>Explora cómo funciona este proyecto y experimenta con el circuito interactivo en Tinkercad. Haz clic en el siguiente enlace para acceder: <a href="https://www.tinkercad.com/things/8TGPeUxToWX-inicial-proyecto1-senal-de-advertencia" target="_blank">Señal de Advertencia - Proyecto en Tinkercad</a>.</p>
+
+    <h2>Componentes Necesarios</h2>
+    <p>Para realizar este proyecto, necesitarás los siguientes componentes:</p>
+    <ul>
+        <li>1 x Arduino UNO</li>
+        <li>1 x LED Verde</li>
+        <li>2 x LEDs Rojos</li>
+        <li>1 x Pulsador</li>
+        <li>3 x Resistencias de 220 Ω</li>
+        <li>1 x Resistencia de 10 kΩ</li>
+        <li>Cables y protoboard</li>
+    </ul>
+
+    <h2>Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+    <ul>
+        <li><a href="https://amzn.to/4dQTpkX" target="_blank">Kit de Arduino Uno R3 - Incluye todo lo necesario</a></li>
+        <li><a href="https://amzn.to/3yGZIsk" target="_blank">Kit de módulos de sensores y componentes - Compatible con Arduino</a></li>
+    </ul>
+
+    <h2>Configuración del Circuito</h2>
+    
+    <h3>Diagrama de Conexión</h3>
+    <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgik_h0nhfMcd_F16qqDgDj7iDK6DPnci-wzkmzl3NXgcYwM2ZgFHQ8Mt0FewU0gvaQ-pLbM-rcDNhLJRdeHFRFUx0UWo4w3EHtR4pbZEB4LD1ScFEwq1Yxn8CGosFB_aaNLjrb_0kTCMQX7fmqWXuMCd6fi9yFJYRVUjq9brH7K-dHgrFxt-ZgYYaa2tgf/s1600/p1-ArduinoUno-proyecto-programacion-se%C3%B1aldeadvertencia.jpg" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="1704" data-original-width="1755" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgik_h0nhfMcd_F16qqDgDj7iDK6DPnci-wzkmzl3NXgcYwM2ZgFHQ8Mt0FewU0gvaQ-pLbM-rcDNhLJRdeHFRFUx0UWo4w3EHtR4pbZEB4LD1ScFEwq1Yxn8CGosFB_aaNLjrb_0kTCMQX7fmqWXuMCd6fi9yFJYRVUjq9brH7K-dHgrFxt-ZgYYaa2tgf/s1600/p1-ArduinoUno-proyecto-programacion-se%C3%B1aldeadvertencia.jpg"/></a></div>
+
+    <h3>Conexiones:</h3>
+    <ul>
+        <li><strong>LEDs:</strong>
+            <ul>
+                <li>Conecta el cátodo del LED verde al pin 3 de Arduino.</li>
+                <li>Conecta el cátodo de un LED rojo al pin 4 de Arduino y el otro LED rojo al pin 5.</li>
+                <li>Conecta los ánodos de los LEDs a resistencias de 220 Ω y luego a GND.</li>
+            </ul>
+        </li>
+        <li><strong>Pulsador:</strong>
+            <ul>
+                <li>Conecta un terminal del pulsador al pin digital 2 de Arduino.</li>
+                <li>Conecta el otro terminal del pulsador a GND a través de una resistencia de 10 kΩ.</li>
+                <li>Conecta el punto común entre la resistencia y el pulsador a 5V.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Código para Controlar la Señal de Advertencia con LEDs</h2>
+    <p>¡Aquí tienes el código completo! Puedes copiarlo fácilmente haciendo clic en el botón "Copiar Código".</p>
+
+    <div class="code-box">
+        <button class="copy-button" onclick="copyCode()">Copiar Código</button>
+        <pre id="codeContent">
+<code>
+// Declaramos la variable para almacenar el estado del pulsador
+int switchState = 0;
+
+void setup() {
+  pinMode(3, OUTPUT); // LED verde
+  pinMode(4, OUTPUT); // LED rojo del medio
+  pinMode(5, OUTPUT); // LED rojo de la derecha
+  pinMode(2, INPUT);  // Pulsador
+}
+
+void loop() {
+  switchState = digitalRead(2); // Leer el estado del pulsador
+
+  if (switchState == LOW) { 
+    // El pulsador no está presionado
+    digitalWrite(3, HIGH); // Encender LED verde
+    digitalWrite(4, LOW);  // Apagar LED rojo del medio
+    digitalWrite(5, LOW);  // Apagar LED rojo de la derecha
+  } else { 
+    // El pulsador está presionado
+    digitalWrite(3, LOW);  // Apagar LED verde
+    digitalWrite(4, HIGH); // Encender LED rojo del medio
+    digitalWrite(5, LOW);  // Apagar LED rojo de la derecha
+    delay(250);            // Pausa de un cuarto de segundo
+    digitalWrite(4, LOW);  // Apagar LED rojo del medio
+    digitalWrite(5, HIGH); // Encender LED rojo de la derecha
+    delay(250);            // Pausa de un cuarto de segundo
+  }
+}
+</code>
+        </pre>
+    </div>
+
+    <h2>Explicación del Código</h2>
+    <p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+    <ol>
+        <li><strong>int switchState = 0;:</strong> Declara una variable llamada <code>switchState</code> para almacenar el estado del pulsador. Inicialmente, se le asigna el valor 0, lo que indica que el pulsador no está presionado.</li>
+        
+        <li><strong>pinMode(pin, mode):</strong> Esta función configura los pines como entradas o salidas. Los pines 3, 4 y 5 están configurados como salidas para controlar los LEDs, mientras que el pin 2 está configurado como entrada para leer el estado del pulsador.</li>
+        
+        <li><strong>digitalRead(pin):</strong> Esta función lee el estado del pin 2, que está conectado al pulsador. Devuelve <code>HIGH</code> si el pulsador no está presionado y <code>LOW</code> si está presionado.</li>
+        
+        <li><strong>if (switchState == LOW) { ... } else { ... }:</strong> Esta estructura condicional verifica si el pulsador está presionado o no. Si está presionado, los LEDs rojos parpadean secuencialmente; de lo contrario, el LED verde se enciende.</li>
+        
+        <li><strong>digitalWrite(pin, value):</strong> Esta función establece el estado de los pines digitales como <code>HIGH</code> o <code>LOW</code>. Se utiliza para encender o apagar los LEDs dependiendo del estado del pulsador.</li>
+        
+        <li><strong>delay(ms):</strong> Introduce una pausa de 250 milisegundos entre los cambios de estado de los LEDs rojos cuando el pulsador está presionado, creando un efecto de parpadeo.</li>
+    </ol>
+
+    <h2>Problemas Comunes y Soluciones</h2>
+    <ul>
+        <li><strong>Los LEDs no se encienden:</strong> Verifica que las conexiones sean correctas y que los LEDs estén conectados en la polaridad correcta. Asegúrate de que las resistencias sean del valor adecuado.</li>
+        <li><strong>El pulsador no responde:</strong> Asegúrate de que el pulsador esté conectado correctamente al pin digital 2 de Arduino y que el circuito de pull-down esté configurado adecuadamente.</li>
+        <li><strong>El parpadeo de los LEDs es irregular:</strong> Revisa el valor de <code>delay()</code> y ajusta el tiempo según sea necesario para obtener un efecto de parpadeo deseado.</li>
+    </ul>
+
+    <h2>Desafío para el Usuario</h2>
+    <p>¿Cómo podrías modificar el proyecto para que los LEDs parpadeen de manera más rápida o más lenta según la duración del pulsador presionado? ¡Déjanos tu idea en los comentarios!</p>
+
+    <button class="show-answer" onclick="toggleAnswer()">Mostrar Solución</button>
+
+    <div class="answer-spacing"></div>
+
+    <div class="hidden-answer" id="answer">
+        <p>Podrías usar la función <code>millis()</code> para medir el tiempo que el pulsador está presionado y ajustar el tiempo de <code>delay()</code> dinámicamente. Aquí tienes un ejemplo:</p>
+        <pre id="solutionCodeContent">
+<code>
+// Añade estas líneas al código existente
+
+unsigned long buttonPressTime = 0; // Tiempo de pulsador presionado
+
+void loop() {
+  switchState = digitalRead(2);
+
+  if (switchState == LOW) {
+    buttonPressTime = millis(); // Guardar el tiempo actual
+  } else {
+    unsigned long currentTime = millis();
+    unsigned long pressDuration = currentTime - buttonPressTime;
+
+    if (pressDuration < 1000) {
+      delay(100); // Parpadeo rápido
+    } else {
+      delay(500); // Parpadeo lento
+    }
+  }
+}
+</code>
+        </pre>
+        <button class="copy-solution-button" onclick="copySolutionCode()">Copiar Código de Solución</button>
+    </div>
+
+    <p>¡Espero que disfrutes creando este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+
+    <p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica!</p>
+</body>
+</html>

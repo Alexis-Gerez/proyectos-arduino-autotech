@@ -1,0 +1,79 @@
+site_name: Proyectos Arduino Fácil
+site_description: Aprende electrónica y programación con proyectos prácticos y didácticos.
+site_author: Docente de Arduino
+
+theme:
+  name: material
+  language: es
+  custom_dir: docs/overrides
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: cyan
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: cyan
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  font:
+    text: Roboto
+    code: Roboto Mono
+  logo: img/logo.png
+  favicon: img/favicon.png
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Inicio: index.md
+  - Proyectos: 
+      - proyectos/index.md
+      - Iniciales: 
+          - proyectos/iniciales/index.md
+          - Ventilador por temperatura: proyectos/iniciales/ventilador.md
+          - Luces de Emergencia: proyectos/iniciales/luces-emergencia.md
+          - Control de Servomotor: proyectos/iniciales/control-servo-potenciometro.md
+          - Detector de Objetos: proyectos/iniciales/detector-objetos.md
+          - Alarma de Proximidad: proyectos/iniciales/alarma-proximidad.md
+          - Estación Meteorológica: proyectos/iniciales/estacion-meteorologica.md
+          - Caja Musical: proyectos/iniciales/caja-musical.md
+      - Intermedios: 
+          - proyectos/intermedios/index.md
+          - Control de Nivel de Agua: proyectos/intermedios/control-nivel-agua.md
+          - Display de 7 Segmentos: proyectos/intermedios/display-7-segmentos.md
+          - Contador de Personas: proyectos/intermedios/contador-personas.md
+          - Ventana Automatizada: proyectos/intermedios/ventana-automatizada.md
+      - Avanzados:
+          - proyectos/avanzados/index.md
+  - Sobre el docente: sobre-mi.md

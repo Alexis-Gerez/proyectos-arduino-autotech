@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Automatiza la apertura y cierre de ventanas según la luz ambiental utilizando Arduino y una fotoresistencia. Ideal para aprender sobre sensores y actuadores.">
+    <meta name="keywords" content="Arduino, Ventana automatizada, Fotoresistencia, Servomotor, Proyecto de Arduino, Control de ventanas">
+    <title>Ventana Automatizada con Fotoresistencia y Arduino - Proyecto Educativo</title>
+    <style>
+        h2 {
+            margin-top: 30px;
+        }
+        p, ul, ol, pre {
+            margin-bottom: 20px;
+        }
+        .code-box {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            background-color: #f0f8ff;
+            position: relative;
+            margin: 20px 0;
+            width: 95%;
+            overflow-x: auto;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .hidden-answer {
+            display: none;
+            margin-top: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            width: 95%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .show-answer {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .answer-spacing {
+            margin-top: 20px;
+        }
+        .copy-solution-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function copyCode() {
+            const codeContent = document.getElementById('codeContent').innerText;
+            navigator.clipboard.writeText(codeContent);
+            alert("¡Código copiado al portapapeles!");
+        }
+
+        function toggleAnswer() {
+            const answer = document.getElementById('answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copySolutionCode() {
+            const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+            navigator.clipboard.writeText(solutionCodeContent);
+            alert("¡Código de la solución copiado al portapapeles!");
+        }
+    </script>
+</head>
+<body>
+    <h1>¡Automatiza tu Ventana con Arduino! Un Proyecto Inteligente y Divertido</h1>
+
+    <p>¡Hola, entusiasta de la tecnología! Hoy te traigo un proyecto innovador que te ayudará a mejorar la eficiencia energética y la comodidad en tu hogar: <strong>Ventana Automatizada</strong>. Utilizaremos un Arduino Uno, un servomotor y una fotoresistencia para abrir o cerrar una ventana automáticamente en función de la cantidad de luz en la habitación. ¡Es una manera genial de poner la tecnología al servicio de tu vida diaria! 😄</p>
+
+    <div class="separator" style="clear: both;">
+        <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg35B7pMlEeIo38G_7e-Wr8IPHmyTbAHQ16Nc6_R6GP18s0Ocy9HzR8FyRIR8_zbLDgCLlg3qG8kUymc0siAl2mv21NDTJyyCo9_t-rGE8Bve2Bz01Ae9nw4Ak79lj2VK-cmJNvwByp2srLvhG2iTSHExvxlJLzSZFIuM24JvOTVNWgZJjcjSg5lVZaBBMx/s1600/p2d.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="381" data-original-width="678" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg35B7pMlEeIo38G_7e-Wr8IPHmyTbAHQ16Nc6_R6GP18s0Ocy9HzR8FyRIR8_zbLDgCLlg3qG8kUymc0siAl2mv21NDTJyyCo9_t-rGE8Bve2Bz01Ae9nw4Ak79lj2VK-cmJNvwByp2srLvhG2iTSHExvxlJLzSZFIuM24JvOTVNWgZJjcjSg5lVZaBBMx/s1600/p2d.png"/></a></div>
+        </a>
+        <p style="text-align: center; font-weight: bold;">Automatización de Ventanas con Arduino y Fotoresistencia: Proyecto educativo con Arduino para controlar una ventana según la luz ambiental.</p>
+    </div>
+
+    <h2>Enlace al Proyecto en Tinkercad - Ventana Automatizada</h2>
+    <p>Explora cómo funciona este proyecto y experimenta con el circuito interactivo en Tinkercad. Haz clic en el siguiente enlace para acceder: <a href="https://www.tinkercad.com/things/0PtlXJaAZtG-desafio-proyecto2-ventana-automatizada" target="_blank">Ventana Automatizada - Proyecto en Tinkercad</a>.</p>
+
+    <h2>Componentes Necesarios</h2>
+    <ul>
+        <li>Arduino UNO</li>
+        <li>Servomotor</li>
+        <li>Fotoresistencia (LDR)</li>
+        <li>Resistencia fija (10K ohm)</li>
+        <li>Cables y protoboard</li>
+    </ul>
+
+    <h2>Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+    <ul>
+        <li><a href="https://amzn.to/4dQTpkX" target="_blank">Kit de Arduino Uno R3 - Incluye todo lo necesario</a></li>
+        <li><a href="https://amzn.to/3yGZIsk" target="_blank">Kit de módulos de sensores y servomotores - Compatible con Arduino</a></li>
+    </ul>
+
+     <h3>Diagrama de Conexión</h3>
+  <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqE47kpUexTP5qn-xBd0HV7X5CNUMynSj_9YUqiJl-jAeEbk9GT1L5BWBHS2YOqOMEF1FyYdIFEpPiea4pUM7wzXvOv7FbmJwDuODqkHGCCsXHTSvdrr24HV1rd2ecxX7_kbupHv0VXCg2VCeggBFYxOQ84r_ci-zMTCkDLw7rcywjm9VHyjzYxCftb7EQ/s1600/Diagrama%20de%20conexiones.jpg" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="1704" data-original-width="1755" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqE47kpUexTP5qn-xBd0HV7X5CNUMynSj_9YUqiJl-jAeEbk9GT1L5BWBHS2YOqOMEF1FyYdIFEpPiea4pUM7wzXvOv7FbmJwDuODqkHGCCsXHTSvdrr24HV1rd2ecxX7_kbupHv0VXCg2VCeggBFYxOQ84r_ci-zMTCkDLw7rcywjm9VHyjzYxCftb7EQ/s1600/Diagrama%20de%20conexiones.jpg"/></a></div>
+
+    <h3>Componentes Necesarios:</h3>
+    <ul>
+        <li>Arduino UNO</li>
+        <li>Servomotor</li>
+        <li>Fotoresistencia (LDR)</li>
+        <li>Resistencia fija (10K ohm)</li>
+        <li>Cables y protoboard</li>
+    </ul>
+
+    <h3>Conexiones:</h3>
+    <ul>
+        <li><strong>Fotoresistencia:</strong>
+            <ul>
+                <li>Conecta un terminal de la fotoresistencia a 5V.</li>
+                <li>Conecta el otro terminal de la fotoresistencia a un terminal de la resistencia fija de 10K ohm.</li>
+                <li>Conecta el otro terminal de la resistencia fija a GND.</li>
+                <li>Conecta el punto medio (entre la fotoresistencia y la resistencia fija) al pin A0 de Arduino.</li>
+            </ul>
+        </li>
+        <li><strong>Servomotor:</strong>
+            <ul>
+                <li>Conecta el cable de señal del servomotor al pin digital 3 de Arduino.</li>
+                <li>Conecta el cable de alimentación del servomotor a 5V.</li>
+                <li>Conecta el cable de tierra del servomotor a GND.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Código para Control de Ventanas con Fotoresistencia</h2>
+    <p>¡Aquí tienes el código completo! Puedes copiarlo fácilmente haciendo clic en el botón "Copiar Código".</p>
+
+    <div class="code-box">
+        <button class="copy-button" onclick="copyCode()">Copiar Código</button>
+        <pre id="codeContent">
+<code>
+// Incluimos la librería Servo para controlar el servomotor
+#include <Servo.h>
+
+// Creamos un objeto Servo para controlar el servomotor
+Servo servo_3;
+int lightSensorPin = A0; // Pin donde está conectada la fotoresistencia
+int threshold = 500; // Umbral para la luz (ajustar según sea necesario)
+
+void setup() {
+  pinMode(lightSensorPin, INPUT); // Configuramos el pin del sensor de luz como entrada
+  Serial.begin(9600); // Iniciamos la comunicación serie a 9600 baudios
+  servo_3.attach(3, 500, 2500); // Adjuntamos el servomotor al pin 3 con un rango de pulsos
+}
+
+void loop() {
+  int lightLevel = analogRead(lightSensorPin); // Leemos el nivel de luz del sensor
+  Serial.println(lightLevel); // Mostramos el nivel de luz en el Monitor Serie
+
+  if (lightLevel < threshold) {
+    // Oscuridad - Cerrar la ventana
+    servo_3.write(180);
+  } else {
+    // Luz - Abrir la ventana
+    servo_3.write(0);
+  }
+  delay(10); // Retardo para mejorar el rendimiento de la simulación
+}
+</code>
+        </pre>
+    </div>
+
+    <h2>Explicación del Código</h2>
+    <p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+    <ol>
+        <li><strong>#include &lt;Servo.h&gt;:</strong> Esta línea incluye la librería <code>Servo.h</code>, que proporciona las funciones necesarias para controlar un servomotor con Arduino. Esta librería es esencial para manipular el servomotor mediante comandos sencillos.</li>
+        
+        <li><strong>Servo servo_3;:</strong> Aquí creamos un objeto llamado <code>servo_3</code> de tipo <code>Servo</code>. Este objeto representará el servomotor que controlaremos en el código, permitiéndonos manejarlo como una entidad con propiedades y métodos.</li>
+        
+        <li><strong>int lightSensorPin = A0;:</strong> Definimos una variable entera <code>lightSensorPin</code> que almacena el número del pin de Arduino al que está conectada la fotoresistencia. En este caso, usamos el pin A0, que es un pin analógico capaz de leer señales variables.</li>
+        
+        <li><strong>int threshold = 500;:</strong> Esta línea establece el umbral de luz con el que el sistema decidirá si abrir o cerrar la ventana. Si el nivel de luz es menor que 500, consideramos que es "oscuro" y el servomotor cerrará la ventana.</li>
+        
+        <li><strong>void setup() { ... }:</strong> La función <code>setup()</code> se ejecuta una sola vez al iniciar el Arduino. Aquí se configuran las entradas y salidas, y se establece la comunicación serial:
+            <ul>
+                <li><code>pinMode(lightSensorPin, INPUT);</code> configura el pin <code>lightSensorPin</code> como una entrada, para que pueda leer valores de la fotoresistencia.</li>
+                <li><code>Serial.begin(9600);</code> inicia la comunicación serial a 9600 baudios, lo que permite enviar datos al monitor serie para monitoreo en tiempo real.</li>
+                <li><code>servo_3.attach(3, 500, 2500);</code> vincula el servomotor al pin digital 3 de Arduino, con un rango de pulso específico que determina su movimiento.</li>
+            </ul>
+        </li>
+        
+        <li><strong>void loop() { ... }:</strong> La función <code>loop()</code> se ejecuta repetidamente en un bucle infinito. Aquí es donde se realizan las lecturas del sensor y los movimientos del servomotor:
+            <ul>
+                <li><code>int lightLevel = analogRead(lightSensorPin);</code> lee el nivel de luz de la fotoresistencia y lo guarda en la variable <code>lightLevel</code>. Este valor puede variar de 0 (oscuridad total) a 1023 (luz máxima).</li>
+                <li><code>Serial.println(lightLevel);</code> imprime el valor de <code>lightLevel</code> en el Monitor Serie, permitiendo visualizar los cambios de luz en tiempo real.</li>
+                <li><code>if (lightLevel < threshold) { ... }</code> verifica si el nivel de luz es inferior al umbral (<code>threshold</code>). Si es así, el código dentro del bloque se ejecuta:
+                    <ul>
+                        <li><code>servo_3.write(180);</code> mueve el servomotor a 180 grados, cerrando la ventana porque se considera "oscuro".</li>
+                    </ul>
+                </li>
+                <li><code>else { ... }</code> Si el nivel de luz es igual o superior al umbral, se ejecuta el bloque de código en <code>else</code>:
+                    <ul>
+                        <li><code>servo_3.write(0);</code> mueve el servomotor a 0 grados, abriendo la ventana porque se considera "luz".</li>
+                    </ul>
+                </li>
+                <li><code>delay(10);</code> introduce una pausa de 10 milisegundos antes de la siguiente iteración del bucle, mejorando el rendimiento de la simulación y evitando lecturas inestables del sensor.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>Problemas Comunes y Soluciones</h2>
+    <ul>
+        <li><strong>El servomotor no se mueve:</strong> Verifica que las conexiones sean correctas y que el servomotor esté recibiendo suficiente alimentación. Revisa el pin de control y asegúrate de que esté conectado al pin 3 de Arduino.</li>
+        <li><strong>El sensor de luz no responde:</strong> Asegúrate de que la fotoresistencia esté conectada correctamente y de que el divisor de voltaje esté funcionando. Revisa las conexiones a 5V, GND, y el pin A0 de Arduino.</li>
+        <li><strong>El valor de luz en el monitor serie no cambia:</strong> Puede ser que el umbral esté configurado incorrectamente. Ajusta el valor del umbral (<code>threshold</code>) para adaptarlo a las condiciones de luz de tu entorno.</li>
+    </ul>
+
+    <h2>Desafío para el Usuario</h2>
+    <p>¿Cómo podrías modificar el proyecto para incluir un segundo servomotor que controle otra ventana al mismo tiempo, pero con un umbral de luz diferente? ¡Déjanos tu idea en los comentarios!</p>
+
+    <button class="show-answer" onclick="toggleAnswer()">Mostrar Solución</button>
+
+    <div class="answer-spacing"></div>
+
+    <div class="hidden-answer" id="answer">
+        <p>Podrías declarar otro objeto Servo y un nuevo umbral para el segundo servomotor. Luego, duplicarías la lógica en el <code>loop()</code> para controlar cada servo de manera independiente:</p>
+        <pre id="solutionCodeContent">
+<code>
+// Añade estas líneas al código existente
+
+Servo servo_4; // Segundo servomotor
+int threshold2 = 700; // Umbral diferente para el segundo servomotor
+
+// En el setup():
+servo_4.attach(4, 500, 2500); // Adjuntamos el segundo servomotor al pin 4
+
+// En el loop():
+if (lightLevel < threshold2) {
+  servo_4.write(180); // Control del segundo servomotor
+} else {
+  servo_4.write(0);
+}
+</code>
+        </pre>
+        <button class="copy-solution-button" onclick="copySolutionCode()">Copiar Código de Solución</button>
+    </div>
+
+    <p>¡Espero que disfrutes creando este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+
+    <p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica!</p>
+</body>
+</html>

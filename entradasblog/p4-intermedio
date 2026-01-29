@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprende a controlar un display de 7 segmentos con Arduino. Proyecto ideal para estudiantes y entusiastas de la electrónica que desean visualizar números del 0 al 9.">
+    <meta name="keywords" content="Arduino, Display de 7 segmentos, Proyecto de Arduino, Electrónica, Control de Displays, Proyectos Arduino Iniciales">
+    <title>Proyecto Inicial: Control de Display de 7 Segmentos con Arduino - Proyecto Educativo</title>
+    <style>
+        h2 {
+            margin-top: 30px;
+        }
+        p, ul, ol, pre {
+            margin-bottom: 20px;
+        }
+        .code-box {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            background-color: #f0f8ff;
+            position: relative;
+            margin: 20px 0;
+            width: 95%;
+            overflow-x: auto;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .hidden-answer {
+            display: none;
+            margin-top: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            width: 95%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .show-answer {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .answer-spacing {
+            margin-top: 20px;
+        }
+        .copy-solution-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function copyCode() {
+            const codeContent = document.getElementById('codeContent').innerText;
+            navigator.clipboard.writeText(codeContent);
+            alert("¡Código copiado al portapapeles!");
+        }
+
+        function toggleAnswer() {
+            const answer = document.getElementById('answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copySolutionCode() {
+            const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+            navigator.clipboard.writeText(solutionCodeContent);
+            alert("¡Código de la solución copiado al portapapeles!");
+        }
+    </script>
+</head>
+<body>
+    <h1>¡Controla un Display de 7 Segmentos con Arduino! Un Proyecto Educativo y Divertido</h1>
+
+    <p>¡Hola, entusiasta de la electrónica! Hoy te traigo un proyecto emocionante que te ayudará a aprender a controlar un <strong>display de 7 segmentos con Arduino</strong>. Usaremos un Arduino Uno para mostrar números del 0 al 9 en un display de 7 segmentos utilizando una conexión multiplexada. Este proyecto es ideal para quienes desean aprender sobre la visualización de números en pantallas y la manipulación de hardware básico. ¡Vamos a comenzar! 😄</p>
+
+    <div class="separator" style="clear: both;">
+        <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglM18ew2kUEypXKKiwZETsVRa3vR4KTpN60me58UAxYSQzzwnXrWadxKfQQmzerQjWoF_mR3kbVgvMq6DpXubcmdpVQcEsXvunseoMQ-gw50_1FzUT6eA7XUHoJv4lAfPQ7GWNxWAWdm4oWBmvUr0g30YmeN_n0P-KH8EFFoZYTqn0WhzeNRsDRsIEO7r5/s1600/p4.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="381" data-original-width="678" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglM18ew2kUEypXKKiwZETsVRa3vR4KTpN60me58UAxYSQzzwnXrWadxKfQQmzerQjWoF_mR3kbVgvMq6DpXubcmdpVQcEsXvunseoMQ-gw50_1FzUT6eA7XUHoJv4lAfPQ7GWNxWAWdm4oWBmvUr0g30YmeN_n0P-KH8EFFoZYTqn0WhzeNRsDRsIEO7r5/s1600/p4.png"/></a></div>
+        </a>
+        <p style="text-align: center; font-weight: bold;">Control de Display de 7 Segmentos con Arduino: Aprende a mostrar números del 0 al 9 utilizando un display de 7 segmentos y Arduino.</p>
+    </div>
+
+    <h2>Enlace al Proyecto en Tinkercad - Display de 7 Segmentos</h2>
+    <p>Explora cómo funciona este proyecto y experimenta con el circuito interactivo en Tinkercad. Haz clic en el siguiente enlace para acceder: <a href="https://www.tinkercad.com/things/jh3ZNXUBGmb-inicial-proyecto4-display-de-7-segmentos?sharecode=yGoODI94qpqvH8v4-c-dSWQgMJ3Rjv0ELM-WtbdsfGo" target="_blank">Display de 7 Segmentos - Proyecto en Tinkercad</a>. Recuerda ajustar la conexión a CÁTODO en el contador de Tinkercad para que funcione correctamente.</p>
+
+    <h2>Componentes Necesarios</h2>
+    <p>Para realizar este proyecto, necesitarás los siguientes componentes:</p>
+    <ul>
+        <li>1 x Arduino Uno R3</li>
+        <li>1 x Display de 7 Segmentos de 1 dígito (cátodo común)</li>
+        <li>7 x Resistencias de 220 Ω</li>
+        <li>Cables y protoboard</li>
+    </ul>
+
+    <h2>Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+    <ul>
+        <li><a href="https://amzn.to/4dQTpkX" target="_blank">Kit de Arduino Uno R3 - Incluye Arduino y más</a></li>
+        <li><a href="https://amzn.to/3yGZIsk" target="_blank">Kit de módulos de sensores y componentes - Compatible con Arduino</a></li>
+    </ul>
+
+    <h2>Configuración del Circuito</h2>
+    
+    <h3>Diagrama de Conexión</h3>
+    <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWsD9X4VkFZoZWJupnVS5UgBtFUJ2MDBF0gZ8O3k__g1e_zFJJoL_Lqv0HGoYeKMxEWXQunDMDv_9wKTgHEVb_JPmW9y6N74UzLQfYYUOxlSgSC7YnaEh9PgoL1r2ZBtwL-9m0v1NWb9ZjISMRv73M91_xxf8okuhvDP8tfTPv-8Hrt_qtElUzJtS4vrHQ/s1600/p4-ArduinoUno-proyecto-programacion-displaydigital.jpg" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="1704" data-original-width="1755" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWsD9X4VkFZoZWJupnVS5UgBtFUJ2MDBF0gZ8O3k__g1e_zFJJoL_Lqv0HGoYeKMxEWXQunDMDv_9wKTgHEVb_JPmW9y6N74UzLQfYYUOxlSgSC7YnaEh9PgoL1r2ZBtwL-9m0v1NWb9ZjISMRv73M91_xxf8okuhvDP8tfTPv-8Hrt_qtElUzJtS4vrHQ/s1600/p4-ArduinoUno-proyecto-programacion-displaydigital.jpg"/></a></div>
+
+    <h3>Conexiones:</h3>
+    <ul>
+        <li><strong>Display de 7 Segmentos:</strong>
+            <ul>
+                <li>Conecta los pines del display de 7 segmentos a los pines digitales del Arduino según el esquema siguiente: A - 2, B - 3, C - 4, D - 5, E - 6, F - 7, G - 8.</li>
+                <li>Conecta cada segmento a través de una resistencia de 220 Ω para limitar la corriente y proteger los LEDs.</li>
+                <li>Conecta el cátodo común del display a GND.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Código para Controlar el Display de 7 Segmentos con Arduino</h2>
+    <p>¡Hora de ensuciarnos las manos con un poco de código! Copia y pega este código en tu Arduino IDE, y prepárate para ver los números aparecer en el display de 7 segmentos:</p>
+
+    <div class="code-box">
+        <button class="copy-button" onclick="copyCode()">Copiar Código</button>
+        <pre id="codeContent">
+<code>
+// Declaración de los pines de los segmentos del display
+int segA = 2;
+int segB = 3;
+int segC = 4;
+int segD = 5;
+int segE = 6;
+int segF = 7;
+int segG = 8;
+
+void setup() {
+  // Configuración de los pines como salidas
+  pinMode(segA, OUTPUT);
+  pinMode(segB, OUTPUT);
+  pinMode(segC, OUTPUT);
+  pinMode(segD, OUTPUT);
+  pinMode(segE, OUTPUT);
+  pinMode(segF, OUTPUT);
+  pinMode(segG, OUTPUT);
+}
+
+void loop() {
+  // Iteramos sobre los números del 0 al 9
+  for (int i = 0; i < 10; i++) {
+    displayNumber(i); // Mostramos el número actual
+    delay(1000); // Espera de 1 segundo entre números
+  }
+}
+
+void displayNumber(int number) {
+  // Encendemos/apagamos segmentos según el número a mostrar
+  switch (number) {
+    case 0: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, HIGH); digitalWrite(segF, HIGH); digitalWrite(segG, LOW); break;
+    case 1: digitalWrite(segA, LOW); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, LOW); digitalWrite(segE, LOW); digitalWrite(segF, LOW); digitalWrite(segG, LOW); break;
+    case 2: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, LOW); digitalWrite(segD, HIGH); digitalWrite(segE, HIGH); digitalWrite(segF, LOW); digitalWrite(segG, HIGH); break;
+    case 3: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, LOW); digitalWrite(segF, LOW); digitalWrite(segG, HIGH); break;
+    case 4: digitalWrite(segA, LOW); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, LOW); digitalWrite(segE, LOW); digitalWrite(segF, HIGH); digitalWrite(segG, HIGH); break;
+    case 5: digitalWrite(segA, HIGH); digitalWrite(segB, LOW); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, LOW); digitalWrite(segF, HIGH); digitalWrite(segG, HIGH); break;
+    case 6: digitalWrite(segA, HIGH); digitalWrite(segB, LOW); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, HIGH); digitalWrite(segF, HIGH); digitalWrite(segG, HIGH); break;
+    case 7: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, LOW); digitalWrite(segE, LOW); digitalWrite(segF, LOW); digitalWrite(segG, LOW); break;
+    case 8: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, HIGH); digitalWrite(segF, HIGH); digitalWrite(segG, HIGH); break;
+    case 9: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, LOW); digitalWrite(segF, HIGH); digitalWrite(segG, HIGH); break;
+  }
+}
+</code>
+        </pre>
+    </div>
+
+    <h2>Explicación del Código</h2>
+    <p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+    <ol>
+        <li><strong>int segA = 2; ... int segG = 8;:</strong> Estas líneas declaran las variables para cada uno de los segmentos del display de 7 segmentos, asignándoles los pines de Arduino que los controlarán.</li>
+        
+        <li><strong>void setup() { ... }:</strong> La función <code>setup()</code> configura los pines de los segmentos como salidas digitales utilizando la función <code>pinMode()</code>. Esto es necesario para controlar cada segmento individualmente.</li>
+        
+        <li><strong>void loop() { ... }:</strong> La función <code>loop()</code> se ejecuta repetidamente en un bucle infinito. Utilizamos un bucle <code>for</code> para iterar del 0 al 9 y mostrar cada número en el display de 7 segmentos. Después de mostrar cada número, el programa espera un segundo antes de pasar al siguiente número.</li>
+        
+        <li><strong>void displayNumber(int number) { ... }:</strong> Esta función utiliza una declaración <code>switch</code> para establecer el estado de los segmentos del display según el número que se desee mostrar. Para cada número, los segmentos correspondientes se encienden (<code>HIGH</code>) o apagan (<code>LOW</code>) utilizando la función <code>digitalWrite()</code>.</li>
+    </ol>
+
+    <h2>Problemas Comunes y Soluciones</h2>
+    <ul>
+        <li><strong>El display no muestra números correctamente:</strong> Verifica que las conexiones de cada segmento al Arduino sean correctas y que el cátodo común esté conectado a GND.</li>
+        <li><strong>Los segmentos del display están demasiado tenues:</strong> Asegúrate de que las resistencias utilizadas sean de 220 Ω. Resistencias de mayor valor pueden causar que los LEDs no se enciendan con suficiente brillo.</li>
+        <li><strong>El número mostrado no cambia:</strong> Verifica que el bucle <code>for</code> en el <code>loop()</code> esté funcionando correctamente y que el retardo (delay) sea el adecuado.</li>
+    </ul>
+
+    <h2>Desafío para el Usuario</h2>
+    <p>¿Cómo podrías modificar el proyecto para mostrar números más grandes (como el 10) o para contar hacia atrás? ¡Déjanos tu idea en los comentarios!</p>
+
+    <button class="show-answer" onclick="toggleAnswer()">Mostrar Solución</button>
+
+    <div class="answer-spacing"></div>
+
+    <div class="hidden-answer" id="answer">
+        <p>Puedes modificar el código para incluir un segundo display de 7 segmentos. Conecta otro display y utiliza otro conjunto de pines digitales para controlarlo. Aquí tienes un ejemplo de cómo hacer esto:</p>
+        <pre id="solutionCodeContent">
+<code>
+// Añade estas líneas al código existente
+
+int segA2 = 9; // Segundo display, segmento A
+// ... Define los pines para los otros segmentos del segundo display
+
+void setup() {
+  // Configuración de pines para ambos displays
+  pinMode(segA2, OUTPUT);
+  // Configura el resto de los pines para el segundo display
+}
+
+void displayNumber2(int number) {
+  // Similar a displayNumber(), pero controla el segundo display
+}
+</code>
+        </pre>
+        <button class="copy-solution-button" onclick="copySolutionCode()">Copiar Código de Solución</button>
+    </div>
+
+    <p>¡Espero que disfrutes creando este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+
+    <p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica!</p>
+</body>
+</html>

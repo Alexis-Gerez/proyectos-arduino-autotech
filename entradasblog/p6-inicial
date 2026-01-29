@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Construye una estación meteorológica básica con Arduino. Aprende a integrar sensores y displays LCD para visualizar temperatura en tiempo real. Proyecto educativo para principiantes.">
+    <meta name="keywords" content="Arduino, Estación Meteorológica, Sensor de Temperatura TMP, LCD I2C, Proyectos de Arduino, Electrónica, Proyectos Educativos, Medición de Temperatura">
+    <title>Proyecto Inicial: Estación Meteorológica Básica con Arduino y LCD I2C - Proyecto Educativo</title>
+    <style>
+        h2 {
+            margin-top: 30px;
+        }
+        p, ul, ol, pre {
+            margin-bottom: 20px;
+        }
+        .code-box {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            background-color: #f0f8ff;
+            position: relative;
+            margin: 20px 0;
+            width: 95%;
+            overflow-x: auto;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .hidden-answer {
+            display: none;
+            margin-top: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            width: 95%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .show-answer {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .answer-spacing {
+            margin-top: 20px;
+        }
+        .copy-solution-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function copyCode() {
+            const codeContent = document.getElementById('codeContent').innerText;
+            navigator.clipboard.writeText(codeContent);
+            alert("¡Código copiado al portapapeles!");
+        }
+
+        function toggleAnswer() {
+            const answer = document.getElementById('answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copySolutionCode() {
+            const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+            navigator.clipboard.writeText(solutionCodeContent);
+            alert("¡Código de la solución copiado al portapapeles!");
+        }
+    </script>
+</head>
+<body>
+    <h1>🌤️ ¡Construye tu Estación Meteorológica Básica con Arduino y LCD I2C! Un Proyecto Divertido y Educativo 🌡️</h1>
+
+    <p>¡Bienvenidos a otro increíble proyecto educativo de electrónica con Arduino! En esta ocasión, vamos a construir una <strong>Estación Meteorológica Básica</strong> que muestra la temperatura y humedad en tiempo real utilizando un <strong>sensor de temperatura TMP</strong> y un <strong>módulo de display LCD I2C</strong>. Este proyecto es perfecto para quienes desean aprender sobre la integración de sensores y la visualización de datos. ¡Vamos a ello! 🚀</p>
+
+   <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEga8W1w33ZWRFO3WcMblns43Up3AsVN2iH1uigcGmKo-RN0r2XhoFBXaPXn2YnDsrLihfSSy-g0htFJvdOAbvLGJencpfb80rsoINeZ06jbX0w5itR0uw0TR22TWYdps8mL99JcGY6rC4YEcnrdzuIkGmQS-aQQ3Ug1e8YcIeUs_Atf41_9WHwYGzQizo-a/s1600/p6.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="381" data-original-width="678" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEga8W1w33ZWRFO3WcMblns43Up3AsVN2iH1uigcGmKo-RN0r2XhoFBXaPXn2YnDsrLihfSSy-g0htFJvdOAbvLGJencpfb80rsoINeZ06jbX0w5itR0uw0TR22TWYdps8mL99JcGY6rC4YEcnrdzuIkGmQS-aQQ3Ug1e8YcIeUs_Atf41_9WHwYGzQizo-a/s1600/p6.png"/></a></div>
+        </a>
+        <p style="text-align: center; font-weight: bold;">Estación Meteorológica Básica con Arduino y LCD I2C: Aprende a crear un sistema de monitoreo de temperatura utilizando Arduino y un sensor TMP.</p>
+    </div>
+
+    <h2>Enlace al Proyecto en Tinkercad - Estación Meteorológica</h2>
+    <p>Explora cómo funciona este proyecto y experimenta con el circuito interactivo en Tinkercad. Haz clic en el siguiente enlace para acceder: <a href=https://www.tinkercad.com/things/difK38ADcbr-proyecto-inicial-6-estacion-meteorologica-basica-con-i2c-y-lm35 target="_blank">Estación Meteorológica - Proyecto en Tinkercad</a>.</p>
+
+    <h2>Componentes Necesarios</h2>
+    <p>Para construir esta estación meteorológica básica, necesitarás los siguientes componentes:</p>
+    <ul>
+        <li>1 x Arduino Uno R3</li>
+        <li>1 x Sensor de Temperatura TMP</li>
+        <li>1 x Módulo LCD I2C (16x2)</li>
+        <li>1 x Protoboard</li>
+        <li>Cables de Conexión</li>
+        <li>Fuente de Alimentación (USB de la PC o batería externa)</li>
+    </ul>
+
+    <h2>Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+    <ul>
+        <li><a href="https://amzn.to/4dQTpkX" target="_blank">Kit de componentes Arduino Uno R3 - Incluye Arduino y más</a></li>
+        <li><a href="https://amzn.to/3yGZIsk" target="_blank">Kit de módulos de sensores y componentes - Compatible con Arduino</a></li>
+    </ul>
+
+    <h2>Configuración del Circuito</h2>
+    
+    <h3>Diagrama de Conexión</h3>
+   <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEIpOUqUyoJu6ALmBF3faPhyQWqimdAP24cSXQgUN4OlJhr6nX9R3koaeGN8ubWNs9EYXyQ4wt7_l_f8nj77HCXBjH28O5mdE-OzlTTUSi6A582U_mLj9X6awJ6Vqq80nh66-B8Yy6wLjCsy6KayNF7Uq2mI34q_rL-190Vt7TvPOBXvlIqLZ3FDeKWgzp/s1600/p6-ArduinoUno-proyecto-programacion-estacionmeteorologicaylm35.jpg" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="1704" data-original-width="1755" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgEIpOUqUyoJu6ALmBF3faPhyQWqimdAP24cSXQgUN4OlJhr6nX9R3koaeGN8ubWNs9EYXyQ4wt7_l_f8nj77HCXBjH28O5mdE-OzlTTUSi6A582U_mLj9X6awJ6Vqq80nh66-B8Yy6wLjCsy6KayNF7Uq2mI34q_rL-190Vt7TvPOBXvlIqLZ3FDeKWgzp/s1600/p6-ArduinoUno-proyecto-programacion-estacionmeteorologicaylm35.jpg"/></a></div>
+    <h3>Conexiones:</h3>
+    <ul>
+        <li><strong>Sensor de Temperatura TMP:</strong>
+            <ul>
+                <li>Conecta VCC a 5V de Arduino.</li>
+                <li>Conecta GND a GND de Arduino.</li>
+                <li>Conecta la salida (Vout) al pin A0 de Arduino.</li>
+            </ul>
+        </li>
+        <li><strong>Módulo LCD I2C:</strong>
+            <ul>
+                <li>Conecta VCC a 5V de Arduino.</li>
+                <li>Conecta GND a GND de Arduino.</li>
+                <li>Conecta SDA al pin A4 de Arduino.</li>
+                <li>Conecta SCL al pin A5 de Arduino.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Configuración de Simulación en Tinkercad:</h3>
+    <p>Asegúrate de que la pantalla LCD I2C que elijas en Tinkercad sea del tipo basado en PCF8574. Configura la dirección I2C como 39 (0x27) para que funcione correctamente.</p>
+
+    <h2>Código para la Estación Meteorológica Básica con Arduino</h2>
+    <p>¡Es hora de programar! Aquí tienes el código completo para tu proyecto de estación meteorológica básica. Simplemente copia y pega este código en tu Arduino IDE para empezar:</p>
+
+    <div class="code-box">
+        <button class="copy-button" onclick="copyCode()">Copiar Código</button>
+        <pre id="codeContent">
+<code>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// Inicialización del LCD I2C
+LiquidCrystal_I2C lcd(0x27, 16, 2);  // Dirección I2C 0x27 y pantalla de 16x2
+
+// Pin del sensor de temperatura TMP
+const int tempPin = A0;
+
+void setup() {
+  lcd.init();  // Inicializa el LCD
+  lcd.backlight();  // Enciende la luz de fondo del LCD
+  lcd.setCursor(0, 0);
+  lcd.print("Estacion Met.");
+  lcd.setCursor(0, 1);
+  lcd.print("Temp: ");
+  delay(2000);
+}
+
+void loop() {
+  // Lee el valor del sensor TMP
+  int sensorValue = analogRead(tempPin);
+  
+  // Convierte el valor analógico a temperatura en Celsius
+  float voltage = sensorValue * (5.0 / 1023.0);  // Conversión a voltaje
+  float temperatureC = (voltage - 0.5) * 100;  // Conversión a grados Celsius
+  
+  // Muestra la temperatura en el LCD
+  lcd.setCursor(6, 1);
+  lcd.print(temperatureC);
+  lcd.print(" C  ");  // Agrega espacio adicional para limpiar caracteres anteriores
+  
+  delay(1000);  // Actualiza cada segundo
+}
+</code>
+        </pre>
+    </div>
+
+    <h2>Explicación del Código</h2>
+    <p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+    <ol>
+        <li><strong>Inicialización del LCD I2C:</strong> Se configura la dirección del LCD I2C (0x27) y el tamaño de la pantalla (16x2). La función <code>lcd.init()</code> inicializa la pantalla y <code>lcd.backlight()</code> enciende la luz de fondo para facilitar la lectura.</li>
+        
+        <li><strong>Pin del Sensor TMP:</strong> Utiliza <code>analogRead(tempPin)</code> para leer la señal analógica del sensor de temperatura TMP.</li>
+        
+        <li><strong>Conversión de Señal Analógica:</strong> Convierte la lectura analógica en un voltaje que luego se convierte a grados Celsius con la fórmula: <code>(voltage - 0.5) * 100</code>.</li>
+        
+        <li><strong>Visualización de Datos en el LCD:</strong> Se muestra el texto inicial "Estacion Met." en la primera línea del LCD. En la segunda línea, el valor de la temperatura en grados Celsius se actualiza cada segundo.</li>
+    </ol>
+
+    <h2>Problemas Comunes y Soluciones</h2>
+    <ul>
+        <li><strong>El LCD no muestra información:</strong> Verifica que la dirección I2C del LCD sea la correcta (0x27 en este caso) y que las conexiones estén bien hechas.</li>
+        <li><strong>La temperatura no se muestra correctamente:</strong> Asegúrate de que el sensor TMP esté conectado correctamente y de que la fórmula de conversión sea la adecuada.</li>
+        <li><strong>El código no se carga en el Arduino:</strong> Revisa que el puerto y la placa correctos estén seleccionados en el Arduino IDE.</li>
+    </ul>
+
+    <h2>Desafío para el Usuario</h2>
+    <p>¿Cómo podrías mejorar esta estación meteorológica básica para mostrar una alerta visual o sonora si la temperatura supera un límite establecido? Podrías agregar un LED que parpadee o un buzzer que emita un sonido cuando la temperatura sea demasiado alta o baja. ¡Déjanos tu idea en los comentarios!</p>
+
+    <button class="show-answer" onclick="toggleAnswer()">Mostrar Solución</button>
+
+    <div class="answer-spacing"></div>
+
+    <div class="hidden-answer" id="answer">
+        <p>Puedes añadir un LED o un buzzer al circuito y modificar el código para activar una alerta. Aquí tienes un ejemplo de cómo hacerlo:</p>
+        <pre id="solutionCodeContent">
+<code>
+// Añade estas líneas al código existente
+
+const int ledPin = 13; // Pin del LED de alerta
+const int buzzerPin = 8; // Pin del buzzer de alerta
+const float tempLimit = 30.0; // Límite de temperatura
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
+  // El resto del setup() permanece igual
+}
+
+void loop() {
+  // Código existente para leer el sensor y mostrar la temperatura
+  if (temperatureC > tempLimit) {
+    digitalWrite(ledPin, HIGH); // Enciende el LED
+    tone(buzzerPin, 1000); // Activa el buzzer
+  } else {
+    digitalWrite(ledPin, LOW); // Apaga el LED
+    noTone(buzzerPin); // Apaga el buzzer
+  }
+}
+</code>
+        </pre>
+        <button class="copy-solution-button" onclick="copySolutionCode()">Copiar Código de Solución</button>
+    </div>
+
+    <p>¡Espero que disfrutes construyendo este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+
+    <p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica!</p>
+</body>
+</html>

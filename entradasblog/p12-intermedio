@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Construye un contador de personas con Arduino utilizando un sensor infrarrojo y un display de 7 segmentos. Ideal para monitoreo de flujo en eventos o tiendas. Aprende cómo integrar sensores y displays en este proyecto interactivo.">
+    <meta name="keywords" content="contador de personas con Arduino, sensor infrarrojo y display de 7 segmentos, proyecto de monitoreo con Arduino, contador de entradas y salidas Arduino">
+    <title>Proyecto Intermedio: Contador de Personas con Sensor Infrarrojo y Arduino - Proyecto Educativo</title>
+    <style>
+        h2 {
+            margin-top: 30px;
+        }
+        p, ul, ol, pre {
+            margin-bottom: 20px;
+        }
+        .code-box {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            background-color: #f0f8ff;
+            position: relative;
+            margin: 20px 0;
+            width: 95%;
+            overflow-x: auto;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .hidden-answer {
+            display: none;
+            margin-top: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            width: 95%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .show-answer {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .answer-spacing {
+            margin-top: 20px;
+        }
+        .copy-solution-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function copyCode() {
+            const codeContent = document.getElementById('codeContent').innerText;
+            navigator.clipboard.writeText(codeContent);
+            alert("¡Código copiado al portapapeles!");
+        }
+
+        function toggleAnswer() {
+            const answer = document.getElementById('answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copySolutionCode() {
+            const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+            navigator.clipboard.writeText(solutionCodeContent);
+            alert("¡Código de la solución copiado al portapapeles!");
+        }
+    </script>
+</head>
+<body>
+    <h1>🚶‍♂️ Proyecto Intermedio: Contador de Personas con Sensor Infrarrojo y Arduino 🧮</h1>
+
+    <p>¡Bienvenidos a otro emocionante proyecto educativo con Arduino! En este tutorial, aprenderemos a construir un <strong>"Contador de Personas con Sensor Infrarrojo"</strong>. Este proyecto es perfecto para aquellos interesados en aplicaciones de monitoreo, como contar personas que ingresan a una habitación o un evento. Utilizaremos un <strong>sensor infrarrojo (IR)</strong> para detectar el paso de personas y un <strong>display de 7 segmentos</strong> para mostrar el conteo. ¡Manos a la obra! 📊🔧</p>
+
+   <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhuX1bTB2iLPnoISPDPTGT6-akjf40SMPk8fw7N_lt08O9OEGv30jfJs1Qrda5HKZUX4kzpgdMceR4wDbw3ye2Sb5h6HxzHdSOdiR9AJMNNu2VJNUQf47YUIl_JZlSL_K4alrOBN7bZZ3WRw7GpsYKci3zhsacGdKk37H2qyx3kZJkTENPg5-C7s4X_uaXC/s1600/p8-contadordepersonasconarduinoysensorir.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="381" data-original-width="678" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhuX1bTB2iLPnoISPDPTGT6-akjf40SMPk8fw7N_lt08O9OEGv30jfJs1Qrda5HKZUX4kzpgdMceR4wDbw3ye2Sb5h6HxzHdSOdiR9AJMNNu2VJNUQf47YUIl_JZlSL_K4alrOBN7bZZ3WRw7GpsYKci3zhsacGdKk37H2qyx3kZJkTENPg5-C7s4X_uaXC/s1600/p8-contadordepersonasconarduinoysensorir.png"/></a></div>
+        </a>
+        <p style="text-align: center; font-weight: bold;">Contador de Personas con Sensor Infrarrojo y Arduino: Aprende a crear un contador utilizando sensores y displays con Arduino.</p>
+    </div>
+
+    <h2>Enlace al Proyecto en Tinkercad - Contador de Personas</h2>
+    <p>Explora cómo funciona este proyecto y experimenta con el circuito interactivo en Tinkercad. Haz clic en el siguiente enlace para acceder: <a href="https://www.tinkercad.com/things/4bcH808UVHa-proyecto-intermedio-contador-de-personas-con-sensor-ir?sharecode=2dmRNa2Lb-FjbMDLWFvIeYa6xcTys05dpuzUGPrHsww" target="_blank">Contador de Personas - Proyecto en Tinkercad</a>.</p>
+
+    <h2>Componentes Necesarios</h2>
+    <p>Para llevar a cabo este proyecto, vamos a necesitar los siguientes componentes:</p>
+    <ul>
+        <li>1 x Arduino Uno</li>
+        <li>1 x Sensor Infrarrojo (IR)</li>
+        <li>1 x Display de 7 Segmentos</li>
+        <li>7 x Resistencias de 220Ω</li>
+        <li>Cables de Conexión</li>
+        <li>1 x Protoboard</li>
+        <li>Fuente de Alimentación (USB de PC o batería externa)</li>
+    </ul>
+
+    <h2>Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+    <ul>
+        <li><a href="https://amzn.to/4dQTpkX" target="_blank">Kit de Arduino Uno R3 - Incluye todo lo necesario</a></li>
+        <li><a href="https://amzn.to/3yGZIsk" target="_blank">Kit de módulos de sensores y componentes - Compatible con Arduino</a></li>
+    </ul>
+
+    <h2>Configuración del Circuito</h2>
+    
+    <h3>Diagrama de Conexión</h3>
+    <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhsWNU4uDLwkpRMUOS5PQPe38KdW__kv3Vb40vovUkfMni_YxNrIYCziPjXFZo5pdnjF7EYFixUKH4cagkR2HFetxrZTJME6xJnELJwmIIkuV9-nwh2kfVgfh-oWq41fWVZYGGPc-blglWcBHxYU2bMEL87Ej7EFb2ed61DwObdbFDdSo4XrnyWrHqBBN8o/s1600/pi2-ArduinoUno-proyecto-programacion-contadordepersonas.jpg" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="1704" data-original-width="1755" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhsWNU4uDLwkpRMUOS5PQPe38KdW__kv3Vb40vovUkfMni_YxNrIYCziPjXFZo5pdnjF7EYFixUKH4cagkR2HFetxrZTJME6xJnELJwmIIkuV9-nwh2kfVgfh-oWq41fWVZYGGPc-blglWcBHxYU2bMEL87Ej7EFb2ed61DwObdbFDdSo4XrnyWrHqBBN8o/s1600/pi2-ArduinoUno-proyecto-programacion-contadordepersonas.jpg"/></a></div>
+
+    <h3>Conexiones:</h3>
+    <ul>
+        <li><strong>Sensor Infrarrojo (IR):</strong>
+            <ul>
+                <li>Conectar el pin de VCC del sensor infrarrojo a 5V de Arduino.</li>
+                <li>Conectar el pin GND del sensor infrarrojo a GND de Arduino.</li>
+                <li>Conectar el pin de salida (OUT) del sensor infrarrojo al pin 2 de Arduino.</li>
+            </ul>
+        </li>
+        <li><strong>Display de 7 Segmentos:</strong>
+            <ul>
+                <li>Conectar los pines a, b, c, d, e, f, g del display de 7 segmentos a los pines 3, 4, 5, 6, 7, 8, 9 de Arduino respectivamente.</li>
+                <li>Conectar cada pin del display a través de una resistencia de 220Ω para limitar la corriente.</li>
+                <li>Conectar el pin de común cátodo o ánodo del display a GND o 5V dependiendo del tipo de display utilizado.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Código para Controlar el Contador de Personas con Arduino</h2>
+    <p>¡Aquí tienes el código completo! Puedes copiarlo fácilmente haciendo clic en el botón "Copiar Código".</p>
+
+    <div class="code-box">
+        <button class="copy-button" onclick="copyCode()">Copiar Código</button>
+        <pre id="codeContent">
+<code>
+// Definición de pines
+const int sensorIRPin = 2;  // Pin del sensor infrarrojo
+const int displayPins[7] = {3, 4, 5, 6, 7, 8, 9};  // Pines para el display de 7 segmentos
+
+// Variables
+int personCount = 0;  // Contador de personas
+bool lastState = LOW;  // Estado anterior del sensor IR
+
+void setup() {
+  // Configuración del pin del sensor infrarrojo como entrada
+  pinMode(sensorIRPin, INPUT);
+
+  // Configuración de los pines del display de 7 segmentos como salida
+  for (int i = 0; i < 7; i++) {
+    pinMode(displayPins[i], OUTPUT);
+    digitalWrite(displayPins[i], LOW);  // Inicializar los segmentos como apagados
+  }
+
+  Serial.begin(9600);  // Iniciar la comunicación serie para la depuración
+}
+
+void loop() {
+  // Leer el estado del sensor infrarrojo
+  bool currentState = digitalRead(sensorIRPin);
+
+  // Detección de cambio de estado del sensor IR (persona pasa por la puerta)
+  if (currentState == HIGH && lastState == LOW) {
+    personCount++;  // Incrementar contador de personas
+    Serial.print("Personas Contadas: ");
+    Serial.println(personCount);
+    mostrarNumero(personCount);  // Mostrar el conteo en el display
+  }
+
+  // Guardar el estado actual del sensor IR para la siguiente lectura
+  lastState = currentState;
+
+  delay(200);  // Pequeño retraso para evitar rebotes del sensor IR
+}
+
+// Función para mostrar números en el display de 7 segmentos
+void mostrarNumero(int num) {
+  // Definición de los números 0 a 9 en el display de 7 segmentos
+  byte numeros[10][7] = {
+    {1, 1, 1, 1, 1, 1, 0}, // 0 (A, B, C, D, E, F encendidos; G apagado)
+    {0, 1, 1, 0, 0, 0, 0}, // 1 (B, C encendidos; A, D, E, F, G apagados)
+    {1, 1, 0, 1, 1, 0, 1}, // 2 (A, B, D, E, G encendidos; C, F apagados)
+    {1, 1, 1, 1, 0, 0, 1}, // 3 (A, B, C, D, G encendidos; E, F apagados)
+    {0, 1, 1, 0, 0, 1, 1}, // 4 (B, C, F, G encendidos; A, D, E apagados)
+    {1, 0, 1, 1, 0, 1, 1}, // 5 (A, C, D, F, G encendidos; B, E apagados)
+    {1, 0, 1, 1, 1, 1, 1}, // 6 (A, C, D, E, F, G encendidos; B apagado)
+    {1, 1, 1, 0, 0, 0, 0}, // 7 (A, B, C encendidos; D, E, F, G apagados)
+    {1, 1, 1, 1, 1, 1, 1}, // 8 (A, B, C, D, E, F, G encendidos)
+    {1, 1, 1, 1, 0, 1, 1}  // 9 (A, B, C, D, F, G encendidos; E apagado)
+  };
+
+  for (int i = 0; i < 7; i++) {
+    digitalWrite(displayPins[i], numeros[num % 10][i]);  // Mostrar el número en el display
+  }
+}
+</code>
+        </pre>
+    </div>
+
+    <h2>Explicación del Código</h2>
+    <p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+    <ol>
+        <li><strong>Sensor Infrarrojo (IR):</strong> Utiliza el pin 2 de Arduino para detectar el paso de personas. Detecta un cambio de estado de bajo a alto.</li>
+        <li><strong>Display de 7 Segmentos:</strong> Los pines 3-9 de Arduino controlan los segmentos del display, que muestra el conteo actual.</li>
+        <li><strong>mostrarNumero(int num):</strong> Toma el conteo actual y muestra el número correspondiente en el display de 7 segmentos.</li>
+    </ol>
+
+    <h2>Problemas Comunes y Soluciones</h2>
+    <ul>
+        <li><strong>El sensor IR no detecta:</strong> Verifica que el sensor esté correctamente conectado y que el pin de salida esté conectado al pin correcto de Arduino.</li>
+        <li><strong>El display no muestra correctamente los números:</strong> Revisa las conexiones y asegúrate de que cada pin esté conectado a la resistencia y al pin correcto en Arduino.</li>
+        <li><strong>Rebote del sensor IR:</strong> Agrega un pequeño retraso o debounce para evitar que el contador aumente incorrectamente.</li>
+    </ul>
+
+    <h2>Desafío para el Usuario</h2>
+    <p>¿Cómo podrías modificar el proyecto para contar tanto entradas como salidas de personas? ¡Déjanos tu idea en los comentarios!</p>
+
+    <button class="show-answer" onclick="toggleAnswer()">Mostrar Solución</button>
+
+    <div class="answer-spacing"></div>
+
+    <div class="hidden-answer" id="answer">
+        <p>Para contar tanto entradas como salidas, puedes utilizar dos sensores IR, uno para detectar la entrada y otro para detectar la salida. Dependiendo de cuál se active primero, incrementas o decrementas el contador de personas.</p>
+        <pre id="solutionCodeContent">
+<code>
+// Modificación para contar entradas y salidas
+
+const int entradaIRPin = 2;  // Pin del sensor infrarrojo de entrada
+const int salidaIRPin = 3;  // Pin del sensor infrarrojo de salida
+
+int personCount = 0;  // Contador de personas
+bool lastEntradaState = LOW;  // Estado anterior del sensor de entrada
+bool lastSalidaState = LOW;  // Estado anterior del sensor de salida
+
+void setup() {
+  pinMode(entradaIRPin, INPUT);
+  pinMode(salidaIRPin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  bool currentEntradaState = digitalRead(entradaIRPin);
+  bool currentSalidaState = digitalRead(salidaIRPin);
+
+  if (currentEntradaState == HIGH && lastEntradaState == LOW) {
+    personCount++;
+    mostrarNumero(personCount);
+  }
+  if (currentSalidaState == HIGH && lastSalidaState == LOW) {
+    personCount--;
+    mostrarNumero(personCount);
+  }
+
+  lastEntradaState = currentEntradaState;
+  lastSalidaState = currentSalidaState;
+
+  delay(200);
+}
+</code>
+        </pre>
+        <button class="copy-solution-button" onclick="copySolutionCode()">Copiar Código de Solución</button>
+    </div>
+
+    <p>¡Espero que disfrutes creando este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+    <p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica!</p>
+</body>
+</html>
