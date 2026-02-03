@@ -5,7 +5,7 @@ hide:
 ---
 
 <div class="blog-hero">
-  <h1>Aprende Arduino Paso a Paso 🚀</h1>
+  <h1>Arduino aplicado a la práctica real</h1>
   <p>Descubre el mundo de la electrónica y la programación con tutoriales didácticos de <strong>Autotech Arduino</strong>. ¡De la teoría a la práctica en minutos!</p>
 </div>
 
@@ -54,6 +54,12 @@ Encuentra el proyecto adecuado para tu nivel de conocimiento y sigue aprendiendo
     <h3>🚀 Nivel Intermedio</h3>
     <p>Integración de múltiples sensores, lógica avanzada y sistemas semi-automatizados.</p>
     <strong>Ver Proyectos Intermedios →</strong>
+  </a>
+  
+  <a href="proyectos/avanzados/" class="project-card">
+    <h3>🔥 Nivel Avanzado</h3>
+    <p>Proyectos complejos, integración de sistemas y desarrollo de aplicaciones robustas.</p>
+    <strong>Ver Proyectos Avanzados →</strong>
   </a>
 </div>
 

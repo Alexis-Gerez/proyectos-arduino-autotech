@@ -1,0 +1,1542 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Aprende electrónica y programación con proyectos prácticos y didácticos.">
+      
+      
+        <meta name="author" content="Docente de Arduino">
+      
+      
+      
+        <link rel="prev" href="../control-nivel-agua/">
+      
+      
+        <link rel="next" href="../contador-personas/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Display de 7 Segmentos - Proyectos Arduino Fácil</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#control-de-display-de-7-segmentos-con-arduino" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="Proyectos Arduino Fácil" class="md-header__button md-logo" aria-label="Proyectos Arduino Fácil" data-md-component="logo">
+      
+  <img src="../../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Proyectos Arduino Fácil
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Display de 7 Segmentos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="cyan"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Proyectos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../sobre-mi/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Sobre el docente
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Proyectos Arduino Fácil" class="md-nav__button md-logo" aria-label="Proyectos Arduino Fácil" data-md-component="logo">
+      
+  <img src="../../../img/logo.png" alt="logo">
+
+    </a>
+    Proyectos Arduino Fácil
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyectos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proyectos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../iniciales/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iniciales
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Iniciales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../iniciales/ventilador/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ventilador por temperatura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../iniciales/luces-emergencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luces de Emergencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../iniciales/control-servo-potenciometro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control de Servomotor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../iniciales/detector-objetos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detector de Objetos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../iniciales/alarma-proximidad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alarma de Proximidad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../iniciales/estacion-meteorologica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estación Meteorológica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../iniciales/caja-musical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caja Musical
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intermedios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Intermedios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-nivel-agua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control de Nivel de Agua
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Display de 7 Segmentos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Display de 7 Segmentos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enlace-al-proyecto-en-tinkercad-display-de-7-segmentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enlace al Proyecto en Tinkercad - Display de 7 Segmentos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#componentes-necesarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes Necesarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todos-los-materiales-necesarios-los-encontraras-en-los-siguientes-enlaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Todos los materiales necesarios los encontrarás en los siguientes enlaces:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-del-circuito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración del Circuito
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración del Circuito">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de Conexión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigo-para-controlar-el-display-de-7-segmentos-con-arduino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Código para Controlar el Display de 7 Segmentos con Arduino
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicacion-del-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicación del Código
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-comunes-y-soluciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas Comunes y Soluciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desafio-para-el-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desafío para el Usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contador-personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contador de Personas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ventana-automatizada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ventana Automatizada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../avanzados/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avanzados
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Avanzados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sobre-mi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sobre el docente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enlace-al-proyecto-en-tinkercad-display-de-7-segmentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enlace al Proyecto en Tinkercad - Display de 7 Segmentos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#componentes-necesarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes Necesarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todos-los-materiales-necesarios-los-encontraras-en-los-siguientes-enlaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Todos los materiales necesarios los encontrarás en los siguientes enlaces:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-del-circuito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuración del Circuito
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración del Circuito">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de Conexión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexiones:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigo-para-controlar-el-display-de-7-segmentos-con-arduino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Código para Controlar el Display de 7 Segmentos con Arduino
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicacion-del-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicación del Código
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-comunes-y-soluciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas Comunes y Soluciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desafio-para-el-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desafío para el Usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+
+                  
+
+
+
+<h1 id="control-de-display-de-7-segmentos-con-arduino">🔢 Control de Display de 7 Segmentos con Arduino 📟</h1>
+<p>¡Hola, entusiasta de la electrónica! Hoy te traigo un proyecto emocionante que te ayudará a aprender a controlar un <strong>display de 7 segmentos con Arduino</strong>. Usaremos un Arduino Uno para mostrar números del 0 al 9 en un display de 7 segmentos utilizando una conexión multiplexada. Este proyecto es ideal para quienes desean aprender sobre la visualización de números en pantallas y la manipulación de hardware básico. ¡Vamos a comenzar! 😄</p>
+<p><img alt="Control de Display de 7 Segmentos" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglM18ew2kUEypXKKiwZETsVRa3vR4KTpN60me58UAxYSQzzwnXrWadxKfQQmzerQjWoF_mR3kbVgvMq6DpXubcmdpVQcEsXvunseoMQ-gw50_1FzUT6eA7XUHoJv4lAfPQ7GWNxWAWdm4oWBmvUr0g30YmeN_n0P-KH8EFFoZYTqn0WhzeNRsDRsIEO7r5/s1600/p4.png" /></p>
+<p><strong>Control de Display de 7 Segmentos con Arduino: Aprende a mostrar números del 0 al 9 utilizando un display de 7 segmentos y Arduino.</strong></p>
+<h2 id="enlace-al-proyecto-en-tinkercad-display-de-7-segmentos">Enlace al Proyecto en Tinkercad - Display de 7 Segmentos</h2>
+<p>Explora cómo funciona este proyecto y experimenta con el circuito interactivo en Tinkercad. Haz clic en el siguiente enlace para acceder: <a href="https://www.tinkercad.com/things/jh3ZNXUBGmb-inicial-proyecto4-display-de-7-segmentos?sharecode=yGoODI94qpqvH8v4-c-dSWQgMJ3Rjv0ELM-WtbdsfGo">Display de 7 Segmentos - Proyecto en Tinkercad</a>. Recuerda ajustar la conexión a CÁTODO en el contador de Tinkercad para que funcione correctamente.</p>
+<h2 id="componentes-necesarios">Componentes Necesarios</h2>
+<p>Para realizar este proyecto, necesitarás los siguientes componentes:</p>
+<ul>
+<li>1 x Arduino Uno R3</li>
+<li>1 x Display de 7 Segmentos de 1 dígito (cátodo común)</li>
+<li>7 x Resistencias de 220 Ω</li>
+<li>Cables y protoboard</li>
+</ul>
+<h2 id="todos-los-materiales-necesarios-los-encontraras-en-los-siguientes-enlaces">Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+<ul>
+<li><a href="https://amzn.to/4dQTpkX">Kit de Arduino Uno R3 - Incluye Arduino y más</a></li>
+<li><a href="https://amzn.to/3yGZIsk">Kit de módulos de sensores y componentes - Compatible con Arduino</a></li>
+</ul>
+<h2 id="configuracion-del-circuito">Configuración del Circuito</h2>
+<h3 id="diagrama-de-conexion">Diagrama de Conexión</h3>
+<p><img alt="Diagrama de Conexión" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWsD9X4VkFZoZWJupnVS5UgBtFUJ2MDBF0gZ8O3k__g1e_zFJJoL_Lqv0HGoYeKMxEWXQunDMDv_9wKTgHEVb_JPmW9y6N74UzLQfYYUOxlSgSC7YnaEh9PgoL1r2ZBtwL-9m0v1NWb9ZjISMRv73M91_xxf8okuhvDP8tfTPv-8Hrt_qtElUzJtS4vrHQ/s1600/p4-ArduinoUno-proyecto-programacion-displaydigital.jpg" /></p>
+<h3 id="conexiones">Conexiones:</h3>
+<ul>
+<li><strong>Display de 7 Segmentos:</strong><ul>
+<li>Conecta los pines del display de 7 segmentos a los pines digitales del Arduino según el esquema siguiente: A - 2, B - 3, C - 4, D - 5, E - 6, F - 7, G - 8.</li>
+<li>Conecta cada segmento a través de una resistencia de 220 Ω para limitar la corriente y proteger los LEDs.</li>
+<li>Conecta el cátodo común del display a GND.</li>
+</ul>
+</li>
+</ul>
+<h2 id="codigo-para-controlar-el-display-de-7-segmentos-con-arduino">Código para Controlar el Display de 7 Segmentos con Arduino</h2>
+<p>¡Hora de ensuciarnos las manos con un poco de código! Copia y pega este código en tu Arduino IDE, y prepárate para ver los números aparecer en el display de 7 segmentos:</p>
+<div style="border: 2px solid #007BFF; padding: 20px; background-color: #f0f8ff; position: relative; margin: 20px 0; border-radius: 8px;">
+    <button onclick="copyCode()" style="background-color: #007BFF; color: white; padding: 10px 20px; border: none; cursor: pointer; position: absolute; right: 10px; top: 10px; border-radius: 5px; font-weight: bold;">Copiar Código</button>
+    <pre id="codeContent" style="margin-top: 40px; overflow-x: auto;"><code>
+// Declaración de los pines de los segmentos del display
+int segA = 2;
+int segB = 3;
+int segC = 4;
+int segD = 5;
+int segE = 6;
+int segF = 7;
+int segG = 8;
+
+void setup() {
+  // Configuración de los pines como salidas
+  pinMode(segA, OUTPUT);
+  pinMode(segB, OUTPUT);
+  pinMode(segC, OUTPUT);
+  pinMode(segD, OUTPUT);
+  pinMode(segE, OUTPUT);
+  pinMode(segF, OUTPUT);
+  pinMode(segG, OUTPUT);
+}
+
+void loop() {
+  // Iteramos sobre los números del 0 al 9
+  for (int i = 0; i < 10; i++) {
+    displayNumber(i); // Mostramos el número actual
+    delay(1000); // Espera de 1 segundo entre números
+  }
+}
+
+void displayNumber(int number) {
+  // Encendemos/apagamos segmentos según el número a mostrar
+  switch (number) {
+    case 0: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, HIGH); digitalWrite(segF, HIGH); digitalWrite(segG, LOW); break;
+    case 1: digitalWrite(segA, LOW); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, LOW); digitalWrite(segE, LOW); digitalWrite(segF, LOW); digitalWrite(segG, LOW); break;
+    case 2: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, LOW); digitalWrite(segD, HIGH); digitalWrite(segE, HIGH); digitalWrite(segF, LOW); digitalWrite(segG, HIGH); break;
+    case 3: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, LOW); digitalWrite(segF, LOW); digitalWrite(segG, HIGH); break;
+    case 4: digitalWrite(segA, LOW); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, LOW); digitalWrite(segE, LOW); digitalWrite(segF, HIGH); digitalWrite(segG, HIGH); break;
+    case 5: digitalWrite(segA, HIGH); digitalWrite(segB, LOW); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, LOW); digitalWrite(segF, HIGH); digitalWrite(segG, HIGH); break;
+    case 6: digitalWrite(segA, HIGH); digitalWrite(segB, LOW); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, HIGH); digitalWrite(segF, HIGH); digitalWrite(segG, HIGH); break;
+    case 7: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, LOW); digitalWrite(segE, LOW); digitalWrite(segF, LOW); digitalWrite(segG, LOW); break;
+    case 8: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, HIGH); digitalWrite(segF, HIGH); digitalWrite(segG, HIGH); break;
+    case 9: digitalWrite(segA, HIGH); digitalWrite(segB, HIGH); digitalWrite(segC, HIGH); digitalWrite(segD, HIGH); digitalWrite(segE, LOW); digitalWrite(segF, HIGH); digitalWrite(segG, HIGH); break;
+  }
+}
+</code></pre>
+</div>
+
+<h2 id="explicacion-del-codigo">Explicación del Código</h2>
+<p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+<ol>
+<li><strong>int segA = 2; ... int segG = 8;:</strong> Estas líneas declaran las variables para cada uno de los segmentos del display de 7 segmentos, asignándoles los pines de Arduino que los controlarán.</li>
+<li><strong>void setup() { ... }:</strong> La función <code>setup()</code> configura los pines de los segmentos como salidas digitales utilizando la función <code>pinMode()</code>. Esto es necesario para controlar cada segmento individualmente.</li>
+<li><strong>void loop() { ... }:</strong> La función <code>loop()</code> se ejecuta repetidamente en un bucle infinito. Utilizamos un bucle <code>for</code> para iterar del 0 al 9 y mostrar cada número en el display de 7 segmentos. Después de mostrar cada número, el programa espera un segundo antes de pasar al siguiente número.</li>
+<li><strong>void displayNumber(int number) { ... }:</strong> Esta función utiliza una declaración <code>switch</code> para establecer el estado de los segmentos del display según el número que se desee mostrar. Para cada número, los segmentos correspondientes se encienden (<code>HIGH</code>) o apagan (<code>LOW</code>) utilizando la función <code>digitalWrite()</code>.</li>
+</ol>
+<h2 id="problemas-comunes-y-soluciones">Problemas Comunes y Soluciones</h2>
+<ul>
+<li><strong>El display no muestra números correctamente:</strong> Verifica que las conexiones de cada segmento al Arduino sean correctas y que el cátodo común esté conectado a GND.</li>
+<li><strong>Los segmentos del display están demasiado tenues:</strong> Asegúrate de que las resistencias utilizadas sean de 220 Ω. Resistencias de mayor valor pueden causar que los LEDs no se enciendan con suficiente brillo.</li>
+<li><strong>El número mostrado no cambia:</strong> Verifica que el bucle <code>for</code> en el <code>loop()</code> esté funcionando correctamente y que el retardo (delay) sea el adecuado.</li>
+</ul>
+<h2 id="desafio-para-el-usuario">Desafío para el Usuario</h2>
+<p>¿Cómo podrías modificar el proyecto para mostrar números más grandes (como el 10) o para contar hacia atrás? ¡Déjanos tu idea en los comentarios!</p>
+<p><button onclick="toggleAnswer()" style="margin-top: 10px; background-color: #007BFF; color: white; padding: 10px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold;">Mostrar Solución</button></p>
+<div id="answer" style="display: none; margin-top: 20px; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 20px; border-radius: 8px; color: #155724; position: relative;">
+    <p>Puedes modificar el código para incluir un segundo display de 7 segmentos. Conecta otro display y utiliza otro conjunto de pines digitales para controlarlo. Aquí tienes un ejemplo de cómo hacer esto:</p>
+    <pre id="solutionCodeContent" style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; border: 1px solid #eee;"><code>
+// Añade estas líneas al código existente
+
+int segA2 = 9; // Segundo display, segmento A
+// ... Define los pines para los otros segmentos del segundo display
+
+void setup() {
+  // Configuración de pines para ambos displays
+  pinMode(segA2, OUTPUT);
+  // Configura el resto de los pines para el segundo display
+}
+
+void displayNumber2(int number) {
+  // Similar a displayNumber(), pero controla el segundo display
+}
+</code></pre>
+    <button onclick="copySolutionCode()" style="background-color: #007BFF; color: white; padding: 8px 16px; border: none; cursor: pointer; border-radius: 5px; margin-top: 10px; font-weight: bold;">Copiar Código de Solución</button>
+</div>
+
+<p>¡Espero que disfrutes creando este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+<p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica!</p>
+<script>
+function copyCode() {
+    const codeContent = document.getElementById('codeContent').innerText;
+    navigator.clipboard.writeText(codeContent);
+    alert("¡Código copiado al portapapeles!");
+}
+
+function toggleAnswer() {
+    const answer = document.getElementById('answer');
+    if (answer.style.display === 'none' || answer.style.display === '') {
+        answer.style.display = 'block';
+    } else {
+        answer.style.display = 'none';
+    }
+}
+
+function copySolutionCode() {
+    const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+     navigator.clipboard.writeText(solutionCodeContent);
+    alert("¡Código de la solución copiado al portapapeles!");
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.tracking", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

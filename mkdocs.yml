@@ -76,4 +76,11 @@ nav:
           - Ventana Automatizada: proyectos/intermedios/ventana-automatizada.md
       - Avanzados:
           - proyectos/avanzados/index.md
+          - Juego Snake: proyectos/avanzados/juego-snake.md
+          - Carrito Detector: proyectos/avanzados/carrito-detector.md
+          - Sensores de Estacionamiento: proyectos/avanzados/sensores-estacionamiento.md
+          - Nivel de Combustible: proyectos/avanzados/nivel-combustible.md
+          - Videojuego de Carrera: proyectos/avanzados/videojuego-carrera.md
+          - Videojuego Doom: proyectos/avanzados/videojuego-doom.md
+          - Videojuego Star Wars: proyectos/avanzados/videojuego-star-wars.md
   - Sobre el docente: sobre-mi.md

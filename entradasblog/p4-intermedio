@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Aprende a controlar un display de 7 segmentos con Arduino. Proyecto ideal para estudiantes y entusiastas de la electrónica que desean visualizar números del 0 al 9.">
     <meta name="keywords" content="Arduino, Display de 7 segmentos, Proyecto de Arduino, Electrónica, Control de Displays, Proyectos Arduino Iniciales">
-    <title>Proyecto Inicial: Control de Display de 7 Segmentos con Arduino - Proyecto Educativo</title>
+    <title>Proyecto Intermedio: Control de Display de 7 Segmentos con Arduino - Proyecto Educativo</title>
     <style>
         h2 {
             margin-top: 30px;

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprende a construir un controlador de ventilador basado en temperatura con Arduino y TMP36. Ajusta automáticamente la velocidad del ventilador según la temperatura medida. ¡Ideal para proyectos de automatización y enfriamiento eficiente!">
+    <meta name="keywords" content="controlador de ventilador con Arduino, proyecto de Arduino con sensor de temperatura TMP36, automático ventilador basado en temperatura, control de temperatura con Arduino">
+    <title>Proyecto Nivel Principiante: Controlador de Ventilador Basado en Temperatura con Velocidad Variable - Tutorial Detallado</title>
+    <style>
+        h2 {
+            margin-top: 30px;
+        }
+        p, ul, ol, pre {
+            margin-bottom: 20px;
+        }
+        .code-box {
+            border: 2px solid #007BFF;
+            padding: 20px;
+            background-color: #f0f8ff;
+            position: relative;
+            margin: 20px 0;
+            width: 95%;
+            overflow-x: auto;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .hidden-answer {
+            display: none;
+            margin-top: 10px;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            width: 95%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .show-answer {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .answer-spacing {
+            margin-top: 20px;
+        }
+        .copy-solution-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <script>
+        function copyCode() {
+            const codeContent = document.getElementById('codeContent').innerText;
+            navigator.clipboard.writeText(codeContent);
+            alert("¡Código copiado al portapapeles!");
+        }
+
+        function toggleAnswer() {
+            const answer = document.getElementById('answer');
+            answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copySolutionCode() {
+            const solutionCodeContent = document.getElementById('solutionCodeContent').innerText;
+            navigator.clipboard.writeText(solutionCodeContent);
+            alert("¡Código de la solución copiado al portapapeles!");
+        }
+    </script>
+</head>
+<body>
+    <h1>🌡️ Proyecto Nivel Principiante: Controlador de Ventilador Basado en Temperatura con Velocidad Variable 🌬️</h1>
+
+    <p>¡Bienvenidos a otro proyecto educativo emocionante con Arduino! Hoy, vamos a construir un <strong>"Controlador de Ventilador Basado en Temperatura con Velocidad Variable"</strong>. Este proyecto es ideal para quienes desean aprender cómo controlar un motor DC (ventilador) en función de la temperatura medida por un sensor, ajustando la velocidad del ventilador automáticamente según el calor detectado. 🚀</p>
+
+    <div class="separator" style="clear: both;">
+        <a href="https://www.tinkercad.com/things/8TGPeUxToWX-principiante-proyecto4-controlador-ventilador" style="display: block; padding: 1em 0; text-align: center;">
+            <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiaCR0QSM64wSjqEnKvz5ZuYi02nWgyGyteYbrWBZ3qNj-UBi-AegbGEBnEerHIupWjcjnJiqA8voOjjmvOQhe0yU4uY1c-s75E64jMP9NREhKZv8h9sMCE6rTW-oqq7XmXMr-fDZyZOlBqu1dRf2-r-0dv_eZuqRpy667n9iBnKg03OPPY9LvtScb0xIaB/s1600/p10-controladordeventiladorbasadoentemperaturaconarduino.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="381" data-original-width="678" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiaCR0QSM64wSjqEnKvz5ZuYi02nWgyGyteYbrWBZ3qNj-UBi-AegbGEBnEerHIupWjcjnJiqA8voOjjmvOQhe0yU4uY1c-s75E64jMP9NREhKZv8h9sMCE6rTW-oqq7XmXMr-fDZyZOlBqu1dRf2-r-0dv_eZuqRpy667n9iBnKg03OPPY9LvtScb0xIaB/s1600/p10-controladordeventiladorbasadoentemperaturaconarduino.png"/></a></div>
+        </a>
+        <p style="text-align: center; font-weight: bold;">Aprende a construir un controlador de ventilador con Arduino utilizando un sensor de temperatura TMP36 y un motor DC con velocidad variable.</p>
+    </div>
+
+    <h2>Enlace al Proyecto en Tinkercad - Controlador de Ventilador</h2>
+    <p>Explora cómo funciona este proyecto y experimenta con el circuito interactivo en Tinkercad. Haz clic en el siguiente enlace para acceder: <a href=https://www.tinkercad.com/things/k9gTNfxRxnQ-proyecto-i-controlador-de-ventilador-basado-en-temperatura?sharecode=-4ygAQYwuDf3Tu4zDW9FWpRwzp-T4sphVu6-jyC0ZVY target="_blank">Controlador de Ventilador - Proyecto en Tinkercad</a>.</p>
+
+    <h2>Componentes Necesarios</h2>
+    <p>Para llevar a cabo este proyecto, necesitarás los siguientes componentes:</p>
+    <ul>
+        <li>1 x Arduino Uno</li>
+        <li>1 x Sensor de Temperatura TMP36</li>
+        <li>1 x Motor DC (como Ventilador)</li>
+        <li>1 x Transistor NPN (ej. 2N2222 o BC547)</li>
+        <li>1 x Diodo de protección (ej. 1N4007)</li>
+        <li>1 x Resistencia 220Ω</li>
+        <li>Fuente de Alimentación Externa (9V o 12V)</li>
+        <li>Protoboard y Cables de Conexión</li>
+    </ul>
+
+    <h2>Todos los materiales necesarios los encontrarás en los siguientes enlaces:</h2>
+    <ul>
+        <li><a href="https://amzn.to/4dQTpkX" target="_blank">Kit de Arduino Uno R3 - Incluye todo lo necesario</a></li>
+        <li><a href="https://amzn.to/3yGZIsk" target="_blank">Kit de módulos de sensores y componentes - Compatible con Arduino</a></li>
+    </ul>
+
+    <h2>Configuración del Circuito</h2>
+    
+    <h3>Diagrama de Conexión</h3>
+    <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjj2_bNVHX7TPwsfMLa8mrsQPVly2NavQVMBzda6ziIgCB2m2eyDEBg5Imd07o_XeIZyVoTxhvp7oL0va2EjdP85Cyd1FG8Qpj6l1EhD0qfUA9Eb5vfhLvnUrnq0cXlbnvxW0cUbIf7Rk9hnD7R7aUM5mS6xuyDrwo7Ah1UyE_iH7SGb3YxyGCgfij7nc-Z/s1600/p9-ArduinoUno-proyecto-programacion-motorcontroladoporsensor.jpg" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" data-original-height="1704" data-original-width="1755" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjj2_bNVHX7TPwsfMLa8mrsQPVly2NavQVMBzda6ziIgCB2m2eyDEBg5Imd07o_XeIZyVoTxhvp7oL0va2EjdP85Cyd1FG8Qpj6l1EhD0qfUA9Eb5vfhLvnUrnq0cXlbnvxW0cUbIf7Rk9hnD7R7aUM5mS6xuyDrwo7Ah1UyE_iH7SGb3YxyGCgfij7nc-Z/s1600/p9-ArduinoUno-proyecto-programacion-motorcontroladoporsensor.jpg"/></a></div>
+
+    <h3>Conexiones:</h3>
+    <ul>
+        <li><strong>Sensor de Temperatura TMP36:</strong>
+            <ul>
+                <li><strong>Pin 1 (VCC)</strong> del TMP36 a <strong>5V</strong> de Arduino.</li>
+                <li><strong>Pin 2 (Vout)</strong> del TMP36 a <strong>pin A0</strong> de Arduino.</li>
+                <li><strong>Pin 3 (GND)</strong> del TMP36 a <strong>GND</strong> de Arduino.</li>
+            </ul>
+        </li>
+        <li><strong>Conexión del Motor DC con el Transistor:</strong>
+            <ul>
+                <li><strong>Colector del Transistor (C)</strong> al <strong>terminal negativo del Motor DC</strong>.</li>
+                <li><strong>Emisor del Transistor (E)</strong> a <strong>GND</strong>.</li>
+                <li><strong>Base del Transistor (B)</strong> conectada al <strong>pin 9</strong> de Arduino a través de una resistencia de <strong>220Ω</strong>.</li>
+                <li><strong>Terminal positivo del Motor DC</strong> a <strong>+9V</strong> o <strong>+12V</strong> (fuente externa).</li>
+                <li>Conectar un <strong>diodo de protección (1N4007)</strong> en paralelo al motor, con el cátodo al positivo del motor y el ánodo al colector del transistor.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Código para Controlar el Ventilador con Arduino</h2>
+    <p>¡Aquí tienes el código completo! Puedes copiarlo fácilmente haciendo clic en el botón "Copiar Código".</p>
+
+    <div class="code-box">
+        <button class="copy-button" onclick="copyCode()">Copiar Código</button>
+        <pre id="codeContent">
+<code>
+// Definición de pines
+const int tempPin = A0;  // Pin de entrada del sensor de temperatura TMP36
+const int fanPin = 9;    // Pin de control del ventilador (PWM) conectado a la base del transistor NPN
+
+// Variables
+int tempValue = 0;  // Valor leído del sensor de temperatura
+float temperatureC = 0;  // Temperatura en grados Celsius
+int fanSpeed = 0;  // Velocidad del ventilador
+
+void setup() {
+  pinMode(tempPin, INPUT);  // Configuración del pin del sensor de temperatura como entrada
+  pinMode(fanPin, OUTPUT);  // Configuración del pin del ventilador como salida
+  Serial.begin(9600);  // Iniciar la comunicación serie para la depuración
+  Serial.println("Sistema de Control de Ventilador Iniciado");
+}
+
+void loop() {
+  tempValue = analogRead(tempPin);  // Leer el valor del sensor de temperatura
+
+  // Conversión a temperatura en grados Celsius para TMP36
+  temperatureC = (tempValue * (5.0 / 1024.0) - 0.5) * 100.0;
+  
+  // Mostrar la temperatura en el monitor serie
+  Serial.print("Temperatura: ");
+  Serial.print(temperatureC);
+  Serial.println(" °C");
+
+  // Control del ventilador basado en la temperatura
+  if (temperatureC > 30.0) {  // Si la temperatura es mayor a 30°C
+    fanSpeed = map(temperatureC, 30, 50, 128, 255);  // Ajustar velocidad del ventilador (50% a 100%)
+    analogWrite(fanPin, fanSpeed);  // Controlar la velocidad del ventilador
+    Serial.print("Ventilador: ON a velocidad ");
+    Serial.println(fanSpeed);
+  } else {
+    analogWrite(fanPin, 0);  // Apagar el ventilador
+    Serial.println("Ventilador: OFF");
+  }
+
+  delay(1000);  // Espera 1 segundo antes de la siguiente lectura
+}
+</code>
+        </pre>
+    </div>
+
+    <h2>Explicación del Código</h2>
+    <p>A continuación, explicamos cada línea del código para ayudarte a comprender su funcionamiento y a desarrollar un pensamiento crítico sobre su estructura y lógica:</p>
+    <ol>
+        <li><strong>Sensor de Temperatura TMP36:</strong> Conectado al pin A0 de Arduino, mide la temperatura ambiente. La salida analógica del TMP36 se convierte a temperatura en grados Celsius.</li>
+        <li><strong>Motor DC (Ventilador):</strong> Controlado por un transistor conectado al pin 9 de Arduino. Se utiliza una señal PWM para variar la velocidad del ventilador en función de la temperatura medida.</li>
+        <li><strong>Control de Velocidad Variable del Ventilador:</strong> Si la temperatura medida es mayor a 30°C, el ventilador se enciende automáticamente y ajusta su velocidad según el calor detectado, variando de un 50% a 100% de su capacidad. Si la temperatura es menor o igual a 30°C, el ventilador permanece apagado.</li>
+    </ol>
+
+    <h2>Problemas Comunes y Soluciones</h2>
+    <ul>
+        <li><strong>El sensor de temperatura no da lecturas precisas:</strong> Asegúrate de que el sensor TMP36 esté correctamente conectado y que el código esté configurado para el rango de temperatura adecuado.</li>
+        <li><strong>El ventilador no se enciende:</strong> Verifica que el transistor esté conectado correctamente y que el pin 9 de Arduino esté generando una señal PWM.</li>
+        <li><strong>El ventilador siempre está a la misma velocidad:</strong> Asegúrate de que la función <code>map()</code> esté configurada correctamente y que la temperatura varíe dentro del rango esperado.</li>
+    </ul>
+
+    <h2>Desafío para el Usuario</h2>
+    <p>¿Cómo podrías modificar el proyecto para que el ventilador tenga más niveles de velocidad en función de rangos de temperatura más específicos? ¡Déjanos tu idea en los comentarios!</p>
+
+    <button class="show-answer" onclick="toggleAnswer()">Mostrar Solución</button>
+
+    <div class="answer-spacing"></div>
+
+    <div class="hidden-answer" id="answer">
+        <p>Podrías agregar más condiciones <code>if</code> y <code>else if</code> para establecer diferentes velocidades según la temperatura. Por ejemplo, podrías establecer velocidades de 25%, 50%, 75% y 100% según rangos de temperatura como 25-30°C, 30-35°C, 35-40°C, y 40-50°C.</p>
+        <pre id="solutionCodeContent">
+<code>
+// Modificación para múltiples niveles de velocidad del ventilador
+
+void loop() {
+  tempValue = analogRead(tempPin);
+  temperatureC = (tempValue * (5.0 / 1024.0) - 0.5) * 100.0;
+  
+  Serial.print("Temperatura: ");
+  Serial.print(temperatureC);
+  Serial.println(" °C");
+
+  if (temperatureC > 40.0) {
+    analogWrite(fanPin, 255);  // 100% velocidad
+  } else if (temperatureC > 35.0) {
+    analogWrite(fanPin, 191);  // 75% velocidad
+  } else if (temperatureC > 30.0) {
+    analogWrite(fanPin, 128);  // 50% velocidad
+  } else if (temperatureC > 25.0) {
+    analogWrite(fanPin, 64);   // 25% velocidad
+  } else {
+    analogWrite(fanPin, 0);    // Apagar ventilador
+  }
+
+  delay(1000);
+}
+</code>
+        </pre>
+        <button class="copy-solution-button" onclick="copySolutionCode()">Copiar Código de Solución</button>
+    </div>
+
+    <p>¡Espero que disfrutes creando este proyecto tanto como yo disfruto compartiéndolo contigo! Recuerda que la práctica hace al maestro, así que sigue experimentando y adaptando este código a nuevas ideas. ¡Nos encantaría ver tus creaciones! 🚀</p>
+    <p>Si te ha gustado este artículo, por favor compártelo y suscríbete a nuestro blog para más proyectos interesantes. ¡Hasta la próxima aventura tecnológica!</p>
+</body>
+</html>
